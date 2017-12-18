@@ -6,8 +6,9 @@ class App extends React.Component {
   }
 
   render () {
-    return(<div>
-      <h1>Hello Universe!!! Magnet On</h1>
+    return(
+      <div>
+        <h1>Hello Universe!!! Magnet Off</h1>
       </div>
     )
   }
