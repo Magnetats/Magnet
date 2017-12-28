@@ -1,14 +1,35 @@
-const webpack = require('webpack');
-const middlware = require('webpack-dev-middleware');
-const compiler = webpack({ .. webpack options .. });
 const bodyParser = require('body-parser');
-var express = require('express');
+const express = require('express');
+const expressLogging = require('express-logging');
+const logger = require('logops');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+const config = require('../webpack.config.js');
+const app = express();
 
-var app = express();
+app.use(expressLogging(logger));
+
+const compiler = webpack(config);
+
+app.use(webpackDevMiddleware(compiler, {
+  serverSideRender: true
+}));
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static('client/dist'));
+app.get('/testendpoint', function (req, res) {
+  console.log('hello homies');
+  res.send('hello dudettes?');
+});
 
-app.listen(3000, () => console.log('you are live on localhost://3000'));
+app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
+app.use(webpackHotServerMiddleware(compiler));
+
+app.listen(3000, () => {
+  console.log('Listening on port 3000!');
+});

@@ -8,7 +8,7 @@ class App extends React.Component {
   render () {
     return(
       <div>
-        <h1>Hello Universe!!! Magnet Off</h1>
+        <h1>Hello Universe!!! Magnet</h1>
       </div>
     )
   }
