@@ -1,7 +1,7 @@
 exports.id = 0;
 exports.modules = {
 
-/***/ "./common/App.jsx":
+/***/ "./client/src/App.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40,7 +40,7 @@ var App = function (_React$Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
-          'hellos'
+          'hey girl'
         )
       );
     }
@@ -60,9 +60,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(App, 'App', '/Users/crizzcoxx/dev/magnet/common/App.jsx');
+  __REACT_HOT_LOADER__.register(App, 'App', '/Users/crizzcoxx/dev/magnet/client/src/App.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/common/App.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/App.jsx');
 }();
 
 ;

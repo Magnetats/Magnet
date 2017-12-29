@@ -5,13 +5,13 @@ import bodyParser from 'body-parser'
 import expressLogging from 'express-logging'
 import logger from 'logops'
 
-import App from '../common/App.jsx'
+import App from '../client/src/App.jsx'
 const app = express()
 
 app.use(expressLogging(logger));
 
 app.get('/testendpoint', (req, res) => {
-  res.send('Hello homeboy')
+  res.send('Hello homeboyz')
 })
 
 app.get('*', (req, res) => {

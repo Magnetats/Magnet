@@ -16,7 +16,7 @@ module.exports = {
       use: 'babel-loader',
       include: [
         path.join(__dirname, 'client'),
-        path.join(__dirname, 'common')
+        path.join(__dirname, 'client/src')
       ]
     }]
   },
@@ -38,7 +38,7 @@ module.exports = {
     headers: { "Access-Control-Allow-Origin": "*" }
   },
   output: {
-    path: path.join(__dirname, '.build'),
+    path: path.join(__dirname, '/client/.dist'),
     publicPath: 'http://localhost:3001/',
     filename: 'client.js'
   }

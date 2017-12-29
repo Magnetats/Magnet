@@ -4,9 +4,9 @@
   "description": "to come",
   "main": "./client/index.js",
   "scripts": {
-    "start:server": "rm -rf ./build && webpack --config  webpack.config.server.js",
+    "start:server": "rm -rf ./client/.dist && webpack --config  webpack.config.server.js",
     "start:client": "webpack-dev-server --config webpack.config.client.js",
-    "start": "rm -rf ./.build && npm-run-all --parallel start:server start:client"
+    "start": "rm -rf ./client/.dist && npm-run-all --parallel start:server start:client"
   },
   "repository": {
     "type": "git",
