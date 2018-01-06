@@ -9,7 +9,7 @@ class App extends React.Component {
     return(
       <div>
         <h1>Hello Universe</h1>
-        <div>hey girl</div>
+        <div>hey homey</div>
       </div>
     )
   }

@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b9f4a33967e0feb5283f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a530511025c001036232"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -686,7 +686,7 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./client/src/App.jsx":
+/***/ "./client/src/components/App.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -725,7 +725,7 @@ var App = function (_React$Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
-          'hey girl'
+          'hey homey'
         )
       );
     }
@@ -745,9 +745,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(App, 'App', '/Users/crizzcoxx/dev/magnet/client/src/App.jsx');
+  __REACT_HOT_LOADER__.register(App, 'App', '/Users/crizzcoxx/dev/magnet/client/src/components/App.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/App.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/components/App.jsx');
 }();
 
 ;
@@ -947,7 +947,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express_logging___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_express_logging__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_logops__ = __webpack_require__("logops");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_logops___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_logops__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__client_src_App_jsx__ = __webpack_require__("./client/src/App.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__client_src_components_App_jsx__ = __webpack_require__("./client/src/components/App.jsx");
 
 
 
@@ -965,8 +965,8 @@ app.get('/testendpoint', function (req, res) {
 });
 
 app.get('*', function (req, res) {
-    var application = Object(__WEBPACK_IMPORTED_MODULE_2_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__client_src_App_jsx__["a" /* default */], null));
-    var html = '<!doctype html>\n    <html class="no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n        </head>\n        <body>\n            <div id="root">' + application + '</div>\n            <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
+    var application = Object(__WEBPACK_IMPORTED_MODULE_2_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__client_src_components_App_jsx__["a" /* default */], null));
+    var html = '<!doctype html>\n    <html class="no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n            <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">\n        </head>\n        <body>\n            <div id="root">' + application + '</div>\n            <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
     res.send(html);
 });
 var _default = app;
