@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a530511025c001036232"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2183f35ea6fb37271de6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -686,12 +686,56 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./client/src/components/App.jsx":
+/***/ "./client/root.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__("react-router-dom");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_components_UserHome_UserHome_jsx__ = __webpack_require__("./client/src/components/UserHome/UserHome.jsx");
+
+
+
+
+
+var Root = function Root() {
+	return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+		__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Switch"],
+		null,
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_2__src_components_UserHome_UserHome_jsx__["a" /* default */] })
+	);
+};
+
+var _default = Root;
+/* harmony default export */ __webpack_exports__["a"] = (_default);
+;
+
+var _temp = function () {
+	if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+		return;
+	}
+
+	__REACT_HOT_LOADER__.register(Root, 'Root', '/Users/crizzcoxx/dev/magnet/client/root.jsx');
+
+	__REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/root.jsx');
+}();
+
+;
+
+/***/ }),
+
+/***/ "./client/src/components/UserHome/UserHome.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_semantic_ui_react_dist_commonjs_elements_Button_Button__ = __webpack_require__("semantic-ui-react/dist/commonjs/elements/Button/Button");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_semantic_ui_react_dist_commonjs_elements_Button_Button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_semantic_ui_react_dist_commonjs_elements_Button_Button__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -702,39 +746,49 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+var UserHome = function (_React$Component) {
+  _inherits(UserHome, _React$Component);
 
-  function App(props) {
-    _classCallCheck(this, App);
+  function UserHome(props) {
+    _classCallCheck(this, UserHome);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    return _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
   }
 
-  _createClass(App, [{
+  _createClass(UserHome, [{
     key: 'render',
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
         null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
           'h1',
           null,
-          'Hello Universe'
+          'Hello Universe Router\'s in'
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
           'div',
           null,
-          'hey homey'
+          'hey homeys'
+        ),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_semantic_ui_react_dist_commonjs_elements_Button_Button___default.a,
+          { primary: true },
+          'Primary'
+        ),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_semantic_ui_react_dist_commonjs_elements_Button_Button___default.a,
+          { secondary: true },
+          'Secondary'
         )
       );
     }
   }]);
 
-  return App;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+  return UserHome;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
 
-var _default = App;
+var _default = UserHome;
 
 
 /* harmony default export */ __webpack_exports__["a"] = (_default);
@@ -745,9 +799,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(App, 'App', '/Users/crizzcoxx/dev/magnet/client/src/components/App.jsx');
+  __REACT_HOT_LOADER__.register(UserHome, 'UserHome', '/Users/crizzcoxx/dev/magnet/client/src/components/UserHome/UserHome.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/components/App.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/components/UserHome/UserHome.jsx');
 }();
 
 ;
@@ -947,7 +1001,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express_logging___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_express_logging__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_logops__ = __webpack_require__("logops");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_logops___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_logops__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__client_src_components_App_jsx__ = __webpack_require__("./client/src/components/App.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_router__ = __webpack_require__("react-router");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__client_root_jsx__ = __webpack_require__("./client/root.jsx");
 
 
 
@@ -956,31 +1012,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+// import { Provider } from 'react-redux';
+// import { createStore } from 'redux';
+
+// import reducers from '../client/src/reducers';
 var app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 
 app.use(__WEBPACK_IMPORTED_MODULE_4_express_logging___default()(__WEBPACK_IMPORTED_MODULE_5_logops___default.a));
 
 app.get('/testendpoint', function (req, res) {
-    res.send('Hello homeboyz');
+  res.send('Hello homeboyz');
 });
 
 app.get('*', function (req, res) {
-    var application = Object(__WEBPACK_IMPORTED_MODULE_2_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__client_src_components_App_jsx__["a" /* default */], null));
-    var html = '<!doctype html>\n    <html class="no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n            <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">\n        </head>\n        <body>\n            <div id="root">' + application + '</div>\n            <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
-    res.send(html);
+  var application = Object(__WEBPACK_IMPORTED_MODULE_2_react_dom_server__["renderToString"])(
+  // <Provider store={createStore(reducers)}>
+  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_6_react_router__["StaticRouter"],
+    {
+      location: req.url,
+      context: {} },
+    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__client_root_jsx__["a" /* default */], null)
+  )
+  // </Provider>
+  );
+  var html = '<!doctype html>\n    <html class="no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">\n            <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">\n        </head>\n        <body>\n          <script src="//unpkg.com/moment@2.10.6/min/moment-with-locales.min.js"></script>\n          <div id="root">' + application + '</div>\n          <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
+  res.send(html);
 });
 var _default = app;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
 var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 
-    __REACT_HOT_LOADER__.register(app, 'app', '/Users/crizzcoxx/dev/magnet/server/server.js');
+  __REACT_HOT_LOADER__.register(app, 'app', '/Users/crizzcoxx/dev/magnet/server/server.js');
 
-    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/server/server.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/server/server.js');
 }();
 
 ;
@@ -1042,6 +1113,27 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
+
+/***/ }),
+
+/***/ "react-router":
+/***/ (function(module, exports) {
+
+module.exports = require("react-router");
+
+/***/ }),
+
+/***/ "react-router-dom":
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
+
+/***/ }),
+
+/***/ "semantic-ui-react/dist/commonjs/elements/Button/Button":
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
 
 /***/ })
 
