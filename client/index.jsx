@@ -11,26 +11,26 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import Root from "./root.jsx"
 import './src/components/styles.scss'
 
-const renderApp = Component => {
-	hydrate(
-		<AppContainer>
-			{/* <Provider store={store}> */}
-			<BrowserRouter>
-				<Component />
-			</BrowserRouter>
-			{/* </Provider> */}
-		</AppContainer>,
-		document.getElementById("root")
-	);
-};
+const renderApp = (Component) => {
+  hydrate (
+    <AppContainer>
+      {/* <Provider store={store}> */}
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
+      {/* </Provider> */}
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
 
-renderApp(Root);
+renderApp(Root)
 
 if (module.hot) {
-	module.hot.accept("./root.jsx", () => {
-		// store.replaceReducer(require('./reducers').default)
-		renderApp(Root);
-	});
+  module.hot.accept('./root.jsx', () => {
+    //store.replaceReducer(require('./reducers').default)
+    renderApp(Root)
+  })
 }
 
 // function render(Component) {
