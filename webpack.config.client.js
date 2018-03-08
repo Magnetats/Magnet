@@ -9,7 +9,12 @@ module.exports = {
 		"webpack-dev-server/client?http://localhost:3001/",
 		"webpack/hot/only-dev-server",
 		"./client/index.jsx"
-	],
+  ],
+  resolve: {
+     alias: {
+        '../../theme.config$': path.join(__dirname, './semantic-themes/theme.config')
+     }
+  },
 	target: "web",
 	module: {
 		rules: [
@@ -34,9 +39,11 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"]
 			},
 			{
-				test: /\.less$/,
-				use: ["style-loader", "css-loader", "less-loader"]
-			},
+      use: ExtractTextPlugin.extract({
+        use: ['css-loader', 'less-loader']
+      }),
+      test: /\.less$/
+    },
 			{
 				test: /\.css$/,
 				use: ["style-loader", "css-loader"]
@@ -66,5 +73,5 @@ module.exports = {
 		path: path.join(__dirname, "/client/.dist"),
 		publicPath: "http://localhost:3001/",
 		filename: "client.js"
-	}
+  }
 };

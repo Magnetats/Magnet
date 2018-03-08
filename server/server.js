@@ -46,7 +46,7 @@ app.get('*', (req, res) => {
           <div id="root">${application}</div>
           <script src="http://localhost:3001/client.js"></script>
         </body>
-    </html>`;
+    </html>`
 res.send(html)
 })
 export default app

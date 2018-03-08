@@ -10,6 +10,7 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 // import reducers from './reducers';
 import Root from "./root.jsx"
 import './src/components/styles.scss'
+import 'semantic-ui-less/semantic.less'
 
 const renderApp = (Component) => {
   hydrate (

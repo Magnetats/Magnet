@@ -13,6 +13,14 @@ module.exports = {
 			whitelist: ["webpack/hot/poll?1000"]
 		})
 	],
+	resolve: {
+		alias: {
+			'../../theme.config$': path.join(
+				__dirname,
+				'./semantic-themes/theme.config'
+			)
+		}
+	},
 	module: {
 		rules: [
 			{
@@ -33,13 +41,15 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"]
 			},
 			{
-				test: /\.less$/,
-				use: ["style-loader", "css-loader", "less-loader"]
-			},
+      use: ExtractTextPlugin.extract({
+        use: ['css-loader', 'less-loader']
+      }),
+      test: /\.less$/
+    },
 			{
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
+				test: /\.css$/,
+				use: ["style-loader", "css-loader"]
+			}
 		]
 	},
 	plugins: [

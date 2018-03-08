@@ -5,6 +5,7 @@
     0px 0px 0px 1px rgba(0, 0, 0, 0.3) inset,
     0px 2px 3px 0px rgba(0, 0, 0, 0.35) !important
   ;
+  color: green;
 }
 
 .ui.secondary.button:hover {
