@@ -1,10 +1,55 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { hydrate } from "react-dom"
+import { AppContainer } from 'react-hot-loader'
+import { BrowserRouter } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+// import { Provider } from 'react-redux'
+// import { createStore, applyMiddleware } from 'redux'
+// import reducers from './reducers';
+import Root from "./root.jsx"
+import './src/components/styles.scss'
+import 'semantic-ui-less/semantic.less'
 
-import App from './src/App.jsx'
+const renderApp = (Component) => {
+  hydrate (
+    <AppContainer>
+      {/* <Provider store={store}> */}
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
+      {/* </Provider> */}
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
 
-const Root = () => (
-  <App />
-)
+renderApp(Root)
 
-ReactDOM.render(<Root />, document.getElementById('root'))
+if (module.hot) {
+  module.hot.accept('./root.jsx', () => {
+    //store.replaceReducer(require('./reducers').default)
+    renderApp(Root)
+  })
+}
+
+// function render(Component) {
+// 	ReactDOM.render(
+// 		<AppContainer>
+// 			<Provider store={store}>
+//         <ConnectedRouter history={history}>
+// 				  <Component />
+//         </ConnectedRouter>
+//       </Provider>
+// 		</AppContainer>,
+// 		document.getElementById("root")
+// 	);
+// }
+
+
+// if (module.hot) {
+// 	module.hot.accept('./reducers', () => {
+// 		store.replaceReducer(require('./reducers').default);
+// 	});
+// }
