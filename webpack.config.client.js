@@ -9,12 +9,15 @@ module.exports = {
 		"webpack-dev-server/client?http://localhost:3001/",
 		"webpack/hot/only-dev-server",
 		"./client/index.jsx"
-  ],
-  resolve: {
-     alias: {
-        '../../theme.config$': path.join(__dirname, './semantic-themes/theme.config')
-     }
-  },
+	],
+	resolve: {
+		alias: {
+			"../../theme.config$": path.join(
+				__dirname,
+				"./semantic-themes/theme.config"
+			)
+		}
+	},
 	target: "web",
 	module: {
 		rules: [
@@ -23,8 +26,9 @@ module.exports = {
 				use: "babel-loader",
 				include: [
 					path.join(__dirname, "client"),
-					path.join(__dirname, "client/src")
-				]
+          path.join(__dirname, "client/src"),
+          [/node_modules[\/\\]semantic-ui-react/]
+        ]
 			},
 			{
 				test: /\.jpe?g$|\.gif$|\.png$|\.ttf$|\.eot$|\.svg$/,
@@ -39,11 +43,11 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"]
 			},
 			{
-      use: ExtractTextPlugin.extract({
-        use: ['css-loader', 'less-loader']
-      }),
-      test: /\.less$/
-    },
+				use: ExtractTextPlugin.extract({
+					use: ["css-loader", "less-loader"]
+				}),
+				test: /\.less$/
+			},
 			{
 				test: /\.css$/,
 				use: ["style-loader", "css-loader"]
@@ -54,7 +58,9 @@ module.exports = {
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
-		new ExtractTextPlugin({ filename: "styles.css" }),
+		new ExtractTextPlugin({
+			filename: "[name].[contenthash].css"
+		}),
 		new webpack.DefinePlugin({
 			"process.env": {
 				WEBPACK: JSON.stringify(true),
@@ -73,5 +79,5 @@ module.exports = {
 		path: path.join(__dirname, "/client/.dist"),
 		publicPath: "http://localhost:3001/",
 		filename: "client.js"
-  }
+	}
 };
