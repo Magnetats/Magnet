@@ -22,7 +22,7 @@
 
 @borderRadius: 0.25em;
 
-@backgroundColor: @green;
+@backgroundColor: #E6EAED;
 @backgroundImage: none;
 @boxShadow: none;
 

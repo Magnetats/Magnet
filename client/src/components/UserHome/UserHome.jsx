@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button } from 'semantic-ui-react'
+import { Button, } from 'semantic-ui-react'
 
 class UserHome extends React.Component {
   constructor (props) {
