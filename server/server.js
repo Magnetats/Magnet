@@ -38,15 +38,17 @@ app.get('*', (req, res) => {
             <meta name="description" content="">
             <meta name="viewport"
             content="width=device-width,  initial-scale=1">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">
             <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">
         </head>
         <body>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <script src="//unpkg.com/moment@2.10.6/min/moment-with-locales.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
           <div id="root">${application}</div>
           <script src="http://localhost:3001/client.js"></script>
         </body>
-    </html>`
+    </html>`;
 res.send(html)
 })
 export default app

@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "be95e8d4bd2d7a8bc3a9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fd96a806b4f6a92b9272"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1036,7 +1036,7 @@ app.get('*', function (req, res) {
   )
   // </Provider>
   );
-  var html = '<!doctype html>\n    <html class="no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">\n            <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">\n        </head>\n        <body>\n          <script src="//unpkg.com/moment@2.10.6/min/moment-with-locales.min.js"></script>\n          <div id="root">' + application + '</div>\n          <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
+  var html = '<!doctype html>\n    <html class="no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">\n            <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">\n        </head>\n        <body>\n          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>\n          <script src="//unpkg.com/moment@2.10.6/min/moment-with-locales.min.js"></script>\n          <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>\n          <div id="root">' + application + '</div>\n          <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
   res.send(html);
 });
 var _default = app;

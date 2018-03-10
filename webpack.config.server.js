@@ -15,9 +15,9 @@ module.exports = {
 	],
 	resolve: {
 		alias: {
-			'../../theme.config$': path.join(
+			"../../theme.config$": path.join(
 				__dirname,
-				'./semantic-themes/theme.config'
+				"./semantic-themes/theme.config"
 			)
 		}
 	},
@@ -41,11 +41,11 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"]
 			},
 			{
-      use: ExtractTextPlugin.extract({
-        use: ['css-loader', 'less-loader']
-      }),
-      test: /\.less$/
-    },
+				use: ExtractTextPlugin.extract({
+					use: ["css-loader", "less-loader"]
+				}),
+				test: /\.less$/
+			},
 			{
 				test: /\.css$/,
 				use: ["style-loader", "css-loader"]
@@ -57,7 +57,9 @@ module.exports = {
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
-		new ExtractTextPlugin({ filename: "styles.css" }),
+		new ExtractTextPlugin({
+			filename: "[name].[contenthash].css"
+		}),
 		new webpack.DefinePlugin({
 			"process.env": {
 				WEBPACK: JSON.stringify(true),
