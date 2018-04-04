@@ -14,10 +14,11 @@ module.exports = {
 		})
 	],
 	resolve: {
+		extensions: [".js", ".jsx"],
 		alias: {
 			"../../theme.config$": path.join(
 				__dirname,
-				"./semantic-themes/theme.config"
+				"./client/src/styling/theme.config"
 			)
 		}
 	},
