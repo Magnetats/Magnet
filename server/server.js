@@ -30,7 +30,7 @@ app.get('*', (req, res) => {
       // </Provider>
     )
     let html = `<!doctype html>
-    <html class="no-js" lang="">
+    <html className"no-js" lang="">
         <head>
             <meta charset="utf-8">
             <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -38,8 +38,8 @@ app.get('*', (req, res) => {
             <meta name="description" content="">
             <meta name="viewport"
             content="width=device-width,  initial-scale=1">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">
-            <link rel="stylesheet" type="text/css" href="/client/.dist/styles.css">
+            <link rel="stylesheet" type="text/css" href="/client/src/styling/styles.css">
+            <link rel="stylesheet" type="text/css" href="/client/src/styling/styles.scss">
         </head>
         <body>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

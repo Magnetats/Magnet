@@ -1,13 +1,12 @@
 import React from 'react'
-
-import { Button, } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 class UserHome extends React.Component {
   constructor (props) {
-		super (props)
-	}
+    super (props)
+  }
 
-	render() {
+  render() {
     return (
     <div>
       <h1>Hello Universe Router's in</h1>
@@ -16,7 +15,7 @@ class UserHome extends React.Component {
       <Button secondary>Secondary</Button>
     </div>
     )
-	}
+  }
 }
 
 export default UserHome

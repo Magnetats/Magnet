@@ -11,10 +11,11 @@ module.exports = {
 		"./client/index.jsx"
 	],
 	resolve: {
+		extensions: [".js", ".jsx"],
 		alias: {
 			"../../theme.config$": path.join(
 				__dirname,
-				"./semantic-themes/theme.config"
+				"./client/src/styling/theme.config"
 			)
 		}
 	},
@@ -26,9 +27,9 @@ module.exports = {
 				use: "babel-loader",
 				include: [
 					path.join(__dirname, "client"),
-          path.join(__dirname, "client/src"),
-          [/node_modules[\/\\]semantic-ui-react/]
-        ]
+					path.join(__dirname, "client/src"),
+					[/node_modules[\/\\]semantic-ui-react/]
+				]
 			},
 			{
 				test: /\.jpe?g$|\.gif$|\.png$|\.ttf$|\.eot$|\.svg$/,

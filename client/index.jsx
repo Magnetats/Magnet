@@ -8,9 +8,21 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 // import { Provider } from 'react-redux'
 // import { createStore, applyMiddleware } from 'redux'
 // import reducers from './reducers';
-import Root from "./root.jsx"
-import './src/components/styles.scss'
 import 'semantic-ui-less/semantic.less'
+import 'semantic-ui-css/semantic.css'
+import 'semantic-ui-css/semantic.min.css'
+import { injectGlobal } from 'styled-components'
+
+import Root from './root.jsx'
+import './src/styling/styles.scss'
+import './src/styling/styles.css'
+import { darkerWhite } from './src/styling/theme/variables'
+
+injectGlobal`
+  body {
+    background-color: #e9e8e9;
+  }
+`;
 
 const renderApp = (Component) => {
   hydrate (
@@ -21,7 +33,7 @@ const renderApp = (Component) => {
       </BrowserRouter>
       {/* </Provider> */}
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('root'),
   )
 }
 
