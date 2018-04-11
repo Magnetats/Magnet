@@ -2,32 +2,26 @@ import React from 'react'
 import { Grid, Segment } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-const MainGrid = styled(Grid) `
+import { medBlue } from '../../../../styling/theme/variables'
+import FunnelStageDropDown from './FunnelStages/FunnelStageDropDown.jsx'
+
+const MainGrid = styled(Grid)`
   && {
-    width: 84%;
+
     margin-left: 185px;
-    margin-top: -355px;
+    margin-top: -431px;
+  }
+  .ui.segment {
+    position: relative;
+    top: 40px;
+    border: none;
   }
 `
-
 const HomeMain = () => (
   <MainGrid>
-    <Grid.Row columns={2}>
+    <Grid.Row columns={1}>
       <Grid.Column>
-        <Segment.Group>
-          <Segment>My Funnel</Segment>
-          <Segment.Group>
-            <Segment>Nested Top</Segment>
-            <Segment>Nested Middle</Segment>
-            <Segment>Nested Bottom</Segment>
-          </Segment.Group>
-          <Segment.Group horizontal>
-            <Segment>Top</Segment>
-            <Segment>Middle</Segment>
-            <Segment>Bottom</Segment>
-          </Segment.Group>
-          <Segment>Bottom</Segment>
-        </Segment.Group>
+        <FunnelStageDropDown />
       </Grid.Column>
       <Grid.Column>
         <Segment>All Sizes</Segment>
