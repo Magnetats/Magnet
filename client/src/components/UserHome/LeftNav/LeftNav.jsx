@@ -59,12 +59,12 @@ class LeftNav extends Component {
         top: 59px;
         background-color: #fff;
         position: relative;
-        margin-top: 21px;
+        margin-top: 50px;
         border-radius: 5px 5px 5px 5px;
         -webkit-box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
         -moz-box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
         box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
-      }`
+      }`;
 
     const LeftNavMenuItem = styled(Menu.Item)`
       &&&&&& {
@@ -76,8 +76,8 @@ class LeftNav extends Component {
         }
         &:before {
           -webkit-box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
--moz-box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
-box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
+          -moz-box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
+          box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
           padding-bottom: 70px;
         }
         &.active {
@@ -199,6 +199,9 @@ box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
               Metrics
           </LeftNavMenuItem>
         </LeftNavMenu>
+        {/* {
+          this.state === 'home' ? <HomeMain />:
+        } */}
         <HomeMain />
       </div>
     )
