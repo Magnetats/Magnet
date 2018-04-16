@@ -1,9 +1,13 @@
 import React from 'react'
-import { Button, Icon } from 'semantic-ui-react'
+import { Icon, Popup } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import { medBlue, lightestBlueBorder, appGrayLightest } from '../../../../../styling/theme/variables'
 
+import ResumeReview from './ResumeReview'
+const FunnelDiv = styled.div`
+
+  `
 const FunnelStage = styled.div`
   {
     height: 49px;
@@ -27,9 +31,21 @@ const FunnelStage = styled.div`
       background: ${medBlue};
       color: #FFFFFF;
       &:after {
-        background: ${medBlue};
+        top: 50%;
+        left: 78px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(136,183,213,0);
+        border-left-color: ${medBlue} !important;
+        border-width: 9px;
+        margin-top: -9px;
       }
     }
+  }
     p {
       &:first-child {
         margin-bottom: -3px;
@@ -49,7 +65,10 @@ const FunnelStage = styled.div`
     }
   }
   .funnel-number {
-    color: ${appGrayLightest}
+    color: ${appGrayLightest};
+    &:hover {
+      color: ${appGrayLightest};
+    }
   }
   .icons-n-numbers {
     position: relative;
@@ -93,26 +112,47 @@ const FunnelStage = styled.div`
       border-width: 9px;
       margin-top: -9px;
     }
+    &:last-child {
+      &:after {
+        color: transparent !important;
+        border-color: transparent !important;
+        background-color: transparent !important;
+      }
+      &:before {
+        color: transparent !important;
+        border-color: transparent !important;
+        background-color: transparent !important;
+      }
+    }
   }
-`
+`;
 
 const FunnelStages = () => (
-  <div>
-    <FunnelStage
-      className="funnel-stage"
-    >
-      <p>Resume</p>
-      <p>Review</p>
-      <div
-        className="icons-n-numbers"
-      >
-        <Icon
-          size="large"
-          name="users"
-          className="funnel-number"
-        />12,300
-      </div>
-    </FunnelStage>
+  <FunnelDiv>
+    <Popup
+      trigger={
+        <FunnelStage
+          className="funnel-stage"
+        >
+          <p>Resume</p>
+          <p>Review</p>
+          <div
+            className="icons-n-numbers"
+          >
+            <Icon
+              size="large"
+              name="users"
+              className="funnel-number"
+            />12,300
+          </div>
+        </FunnelStage>}
+      inverted
+      content={<ResumeReview />}
+      position="bottom center"
+      verticalOffset={-5}
+      hoverable="false"
+      on="hover"
+    />
     <FunnelStage
       className="funnel-stage"
     >
@@ -202,7 +242,7 @@ const FunnelStages = () => (
         />12,300
       </div>
     </FunnelStage>
-  </div>
+  </FunnelDiv>
 )
 
 export default FunnelStages
