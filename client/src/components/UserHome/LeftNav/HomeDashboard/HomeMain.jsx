@@ -3,18 +3,17 @@ import { Grid, Segment } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import { medBlue } from '../../../../styling/theme/variables'
-import FunnelStageDropDown from './FunnelStages/FunnelStageDropDown.jsx'
+import FunnelStageDropDown from './FunnelStages/FunnelStageDropDown'
 
 const MainGrid = styled(Grid)`
   && {
-
     margin-left: 185px;
     margin-top: -431px;
+    width: 84%;
   }
   .ui.segment {
     position: relative;
-    top: 40px;
-    border: none;
+    top: 18px;
   }
 `
 const HomeMain = () => (
@@ -23,11 +22,8 @@ const HomeMain = () => (
       <Grid.Column>
         <FunnelStageDropDown />
       </Grid.Column>
-      <Grid.Column>
-        <Segment>All Sizes</Segment>
-      </Grid.Column>
     </Grid.Row>
-    <Grid.Row columns={2} only='widescreen'>
+    <Grid.Row columns={2}>
       <Grid.Column>
         <Segment>Widescreen</Segment>
       </Grid.Column>
@@ -36,10 +32,10 @@ const HomeMain = () => (
       </Grid.Column>
     </Grid.Row>
     <Grid.Row columns={3}>
-      <Grid.Column only='computer'>
+      <Grid.Column only="computer">
         <Segment>Computer</Segment>
       </Grid.Column>
-      <Grid.Column only='tablet mobile'>
+      <Grid.Column only="tablet mobile">
         <Segment>Tablet and Mobile</Segment>
       </Grid.Column>
       <Grid.Column>
@@ -49,7 +45,7 @@ const HomeMain = () => (
         <Segment>All Sizes</Segment>
       </Grid.Column>
     </Grid.Row>
-    <Grid.Row columns={4} only='computer'>
+    <Grid.Row columns={4} only="computer">
       <Grid.Column>
         <Segment>Computer</Segment>
       </Grid.Column>
@@ -63,7 +59,7 @@ const HomeMain = () => (
         <Segment>Computer</Segment>
       </Grid.Column>
     </Grid.Row>
-    <Grid.Row columns={3} only='tablet'>
+    <Grid.Row columns={3} only="tablet">
       <Grid.Column>
         <Segment>Tablet</Segment>
       </Grid.Column>
