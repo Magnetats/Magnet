@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a7c8ce67a2d1e815c19a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "99ae9d9af37cc834790a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -2038,12 +2038,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+// import { Provider } from 'react-redux'
+// import { createStore } from 'redux'
+// import reducers from '../client/src/reducers'
+var mongoose = __webpack_require__("mongoose");
+mongoose.Promise = __webpack_require__("bluebird");
 
 
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
+mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet').then(function () {
+  // if all is ok we will be here
+  console.log('You are connected in more ways then you know');
+}).catch(function (err) {
+  // if error we will be here
+  console.error('App starting error:', err.stack);
+  process.exit(1);
+});
 
-// import reducers from '../client/src/reducers';
 var app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 
 app.use(__WEBPACK_IMPORTED_MODULE_4_express_logging___default()(__WEBPACK_IMPORTED_MODULE_5_logops___default.a));
@@ -2064,7 +2074,7 @@ app.get('*', function (req, res) {
   )
   // </Provider>
   );
-  var html = '<!doctype html>\n    <html className"no-js" lang="">\n        <head>\n            <meta charset="utf-8">\n            <meta http-equiv="x-ua-compatible" content="ie=edge">\n            <title>HMR all the things!</title>\n            <meta name="description" content="">\n            <meta name="viewport"\n            content="width=device-width,  initial-scale=1">\n            <link rel="stylesheet" type="text/css" href="/client/src/styling/styles.css">\n            <link rel="stylesheet" type="text/css" href="/client/src/styling/styles.scss">\n        </head>\n        <body>\n          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>\n          <script src="//unpkg.com/moment@2.10.6/min/moment-with-locales.min.js"></script>\n          <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>\n          <div id="root">' + application + '</div>\n          <script src="http://localhost:3001/client.js"></script>\n        </body>\n    </html>';
+  var html = '<!doctype html>\n    <html className"no-js" lang="">\n      <head>\n        <meta charset="utf-8">\n        <meta http-equiv="x-ua-compatible" content="ie=edge">\n        <title>HMR all the things!</title>\n        <meta name="description" content="">\n        <meta name="viewport"\n        content="width=device-width,  initial-scale=1">\n        <link rel="stylesheet" type="text/css" href="/client/src/styling/styles.css">\n        <link rel="stylesheet" type="text/css" href="/client/src/styling/styles.scss">\n      </head>\n      <body>\n        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>\n        <script src="//unpkg.com/moment@2.10.6/min/moment-with-locales.min.js"></script>\n        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>\n        <div id="root">' + application + '</div>\n        <script src="http://localhost:3001/client.js"></script>\n      </body>\n    </html>';
   res.send(html);
 });
 var _default = app;
@@ -2091,6 +2101,13 @@ var _temp = function () {
 __webpack_require__("./node_modules/webpack/hot/poll.js?1000");
 module.exports = __webpack_require__("./server/index.js");
 
+
+/***/ }),
+
+/***/ "bluebird":
+/***/ (function(module, exports) {
+
+module.exports = require("bluebird");
 
 /***/ }),
 
@@ -2126,6 +2143,13 @@ module.exports = require("http");
 /***/ (function(module, exports) {
 
 module.exports = require("logops");
+
+/***/ }),
+
+/***/ "mongoose":
+/***/ (function(module, exports) {
+
+module.exports = require("mongoose");
 
 /***/ }),
 

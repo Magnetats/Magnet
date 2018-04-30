@@ -34,18 +34,16 @@ const db = mongoose.connection
 // 		process.exit(1);
 // 	}
 // });
-mongoose.connect(
-  'mongodb://sircox:Bulletproof@ds151433.mlab.com:51433/magnet',
-  { server: { reconnectTries: Number.MAX_VALUE } },
-)
-
-//competely:Youcandoit@ds133796.mlab.com:33796/competely
 
 mongodb: db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
   console.log('you da man and connected in more ways than you know')
 })
 
+mongoose.connect(
+  'mongodb://sircox:Bulletproof@ds151433.mlab.com:51433/magnet',
+  { server: { reconnectTries: Number.MAX_VALUE } },
+)
 // const userSchema = new Schema({
 //   user_id: Number,
 //   first_name: String,
