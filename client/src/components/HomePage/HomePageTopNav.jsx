@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-import { appGrayLight } from '../../../styling/theme/variables'
-import Logo from '../../Logo'
+import { appGrayLight } from '../../styling/theme/variables'
+import Logo from '../Logo'
+import RegisterUser from '../Registration/RegisterUser'
 
-const TopNavDiv = styled.div`
+const HomePageTopNavDiv = styled.div`
   &&& a {
     color: ${appGrayLight}
   }
@@ -18,14 +20,19 @@ const TopNavDiv = styled.div`
   }
 `
 
-const TopNav = () => {
+const HomePageTopNav = () => {
   return (
-    <TopNavDiv>
+    <HomePageTopNavDiv>
       <div className="ui top fixed menu">
         <div className="item" id="logo-box">
           <Logo />
         </div>
-        <a className="item app-top-menu-text">Features</a>
+        <Link to="/register">
+          <a className="item app-top-menu-text">Register</a>
+        </Link>
+        <Link to="/login">
+          <a className="item app-top-menu-text">Login</a>
+        </Link>
         {/* <a className="item">Testimonials</a>
         <a className="item" position="right">Sign-in</a> */}
       </div>
@@ -39,8 +46,8 @@ const TopNav = () => {
       </div>
       <p />
       <p />
-    </TopNavDiv>
+    </HomePageTopNavDiv >
   )
 }
 
-export default TopNav
+export default HomePageTopNav
