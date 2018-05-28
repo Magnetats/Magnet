@@ -20,12 +20,12 @@ import { darkerWhite } from './src/styling/theme/variables'
 
 injectGlobal`
   body {
-    background-color: #e9e8e9;
+    background-color: #e9e8e9
   }
-`;
+`
 
 const renderApp = (Component) => {
-  hydrate (
+  hydrate(
     <AppContainer>
       {/* <Provider store={store}> */}
       <BrowserRouter>
