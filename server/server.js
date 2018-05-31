@@ -13,6 +13,10 @@ const book = require('../routes/book')
 
 const favicon = require('serve-favicon')
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 // import { Provider } from 'react-redux'
 // import { createStore } from 'redux'
 // import reducers from '../client/src/reducers'
@@ -45,8 +49,13 @@ app.use(favicon('favicon.ico'))
 app.get('/testendpoint', (req, res) => {
   res.send('Hello homeboyz')
 })
+<<<<<<< HEAD
+// app.use('/api/book', book)
+// app.use('/api/auth', auth)
+=======
 app.use('/api/book', book)
 app.use('/api/auth', auth)
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 
 app.get('*', (req, res) => {
   const application = renderToString(

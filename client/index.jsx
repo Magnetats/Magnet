@@ -13,7 +13,7 @@ import 'semantic-ui-css/semantic.css'
 import 'semantic-ui-css/semantic.min.css'
 import { injectGlobal } from 'styled-components'
 
-import Root from './root.jsx'
+import Root from './root'
 import './src/styling/styles.scss'
 import './src/styling/styles.css'
 import { darkerWhite } from './src/styling/theme/variables'
