@@ -20,7 +20,15 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD
 /******/ 	var hotCurrentHash = "6bf95afaf291b7308cc1"; // eslint-disable-line no-unused-vars
+=======
+<<<<<<< HEAD
+/******/ 	var hotCurrentHash = "20e3204246a83e321ba0"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "a7c8ce67a2d1e815c19a"; // eslint-disable-line no-unused-vars
+>>>>>>> 8c33ec3279a953951cee7b2bf68fa3188488e039
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -696,8 +704,15 @@
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_components_UserHome_LeftNav_LeftNav__ = __webpack_require__("./client/src/components/UserHome/LeftNav/LeftNav.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_components_HomePage_HomePage__ = __webpack_require__("./client/src/components/HomePage/HomePage.jsx");
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_components_Registration_RegisterUser__ = __webpack_require__("./client/src/components/Registration/RegisterUser.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_components_Registration_Login__ = __webpack_require__("./client/src/components/Registration/Login.jsx");
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_registerServiceWorkers__ = __webpack_require__("./client/src/registerServiceWorkers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_components_Registration_RegisterUser__ = __webpack_require__("./client/src/components/Registration/RegisterUser.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_components_Registration_Login__ = __webpack_require__("./client/src/components/Registration/Login.jsx");
+
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 
 
 
@@ -711,10 +726,17 @@ var Root = function Root() {
     null,
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_3__src_components_HomePage_HomePage__["a" /* default */] }),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/home', component: __WEBPACK_IMPORTED_MODULE_2__src_components_UserHome_LeftNav_LeftNav__["a" /* default */] }),
+<<<<<<< HEAD
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/login', component: __WEBPACK_IMPORTED_MODULE_5__src_components_Registration_Login__["a" /* default */] }),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/register', component: __WEBPACK_IMPORTED_MODULE_4__src_components_Registration_RegisterUser__["a" /* default */] })
+=======
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/login', component: __WEBPACK_IMPORTED_MODULE_6__src_components_Registration_Login__["a" /* default */] }),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/register', component: __WEBPACK_IMPORTED_MODULE_5__src_components_Registration_RegisterUser__["a" /* default */] })
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
   );
 };
+
+Object(__WEBPACK_IMPORTED_MODULE_4__src_registerServiceWorkers__["a" /* default */])();
 
 var _default = Root;
 /* harmony default export */ __webpack_exports__["a"] = (_default);
@@ -883,11 +905,19 @@ var _temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+<<<<<<< HEAD
 
   __REACT_HOT_LOADER__.register(HomePageTopNavDiv, 'HomePageTopNavDiv', '/Users/crizzcoxx/dev/magnet/client/src/components/HomePage/HomePageTopNav.jsx');
 
   __REACT_HOT_LOADER__.register(HomePageTopNav, 'HomePageTopNav', '/Users/crizzcoxx/dev/magnet/client/src/components/HomePage/HomePageTopNav.jsx');
 
+=======
+
+  __REACT_HOT_LOADER__.register(HomePageTopNavDiv, 'HomePageTopNavDiv', '/Users/crizzcoxx/dev/magnet/client/src/components/HomePage/HomePageTopNav.jsx');
+
+  __REACT_HOT_LOADER__.register(HomePageTopNav, 'HomePageTopNav', '/Users/crizzcoxx/dev/magnet/client/src/components/HomePage/HomePageTopNav.jsx');
+
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
   __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/components/HomePage/HomePageTopNav.jsx');
 }();
 
@@ -2221,8 +2251,8 @@ var _temp = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_styled_components__ = __webpack_require__("styled-components");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_styled_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_styled_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styling_theme_variables_js__ = __webpack_require__("./client/src/styling/theme/variables.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Logo_jsx__ = __webpack_require__("./client/src/components/Logo.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styling_theme_variables__ = __webpack_require__("./client/src/styling/theme/variables.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Logo__ = __webpack_require__("./client/src/components/Logo.jsx");
 
 
 
@@ -2232,7 +2262,7 @@ var _temp = function () {
 var TopNavDiv = __WEBPACK_IMPORTED_MODULE_1_styled_components___default.a.div.withConfig({
   displayName: 'TopNav__TopNavDiv',
   componentId: 's1ti47xt-0'
-})(['&&& a{color:', ';}.ui.top.fixed.menu{height:55px;}#logo-box{width:15%;min-width:213px;padding-left:2%;}'], __WEBPACK_IMPORTED_MODULE_2__styling_theme_variables_js__["b" /* appGrayLight */]);
+})(['&&& a{color:', '}.ui.top.fixed.menu{height:55px;}#logo-box{width:15%;min-width:213px;padding-left:2%;}'], __WEBPACK_IMPORTED_MODULE_2__styling_theme_variables__["b" /* appGrayLight */]);
 
 var TopNav = function TopNav() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -2244,7 +2274,7 @@ var TopNav = function TopNav() {
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'item', id: 'logo-box' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Logo_jsx__["a" /* default */], null)
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Logo__["a" /* default */], null)
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'a',
@@ -2263,7 +2293,7 @@ var TopNav = function TopNav() {
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'a',
         { className: 'item' },
-        'Features'
+        'Hey Girl Hey'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'a',
@@ -2295,6 +2325,61 @@ var _temp = function () {
   __REACT_HOT_LOADER__.register(TopNav, 'TopNav', '/Users/crizzcoxx/dev/magnet/client/src/components/UserHome/TopNav/TopNav.jsx');
 
   __REACT_HOT_LOADER__.register(_default, 'default', '/Users/crizzcoxx/dev/magnet/client/src/components/UserHome/TopNav/TopNav.jsx');
+}();
+
+;
+
+/***/ }),
+
+/***/ "./client/src/registerServiceWorkers.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = register;
+function register() {
+  if (Object({"WEBPACK":true,"BUILD_TARGET":"server"}).NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+    // The URL constructor is available in all browsers that support SW.
+    var publicUrl = new URL(Object({"WEBPACK":true,"BUILD_TARGET":"server"}).PUBLIC_URL, window.location);
+    if (publicUrl.origin !== window.location.origin) {
+      // Our service worker won't work if PUBLIC_URL is on a different origin
+      // from what our page is served on. This might happen if a CDN is used to
+      // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
+      return;
+    }
+
+    window.addEventListener('load', function () {
+      var swUrl = Object({"WEBPACK":true,"BUILD_TARGET":"server"}).PUBLIC_URL + '/service-worker.js';
+
+      if (isLocalhost) {
+        // This is running on localhost. Lets check if a service worker still exists or not.
+        checkValidServiceWorker(swUrl);
+
+        // Add some additional logging to localhost, pointing developers to the
+        // service worker/PWA documentation.
+        navigator.serviceWorker.ready.then(function () {
+          console.log('This web app is being served cache-first by a service ' + 'worker. To learn more, visit https://goo.gl/SC7cgQ');
+        });
+      } else {
+        // Is not local host. Just register service worker
+        registerValidSW(swUrl);
+      }
+    });
+
+    window.addEventListener('fetch', function (event) {
+      if (event.request.url.match('^.*(\/api\/).*$')) {
+        return false;
+      }
+    });
+  }
+}
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(register, 'register', '/Users/crizzcoxx/dev/magnet/client/src/registerServiceWorkers.js');
 }();
 
 ;
@@ -2483,6 +2568,7 @@ var _temp = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var mongoose = __webpack_require__("mongoose");
+<<<<<<< HEAD
 var UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -2511,11 +2597,25 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
   passwordConf: {
+=======
+
+var Schema = mongoose.Schema;
+var bcrypt = __webpack_require__("bcrypt-nodejs");
+
+var UserSchema = new Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
     type: String,
     required: true
   }
 });
 
+<<<<<<< HEAD
 //authenticate input against database
 UserSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({
@@ -2552,6 +2652,38 @@ UserSchema.pre('save', function (next) {
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;
+=======
+UserSchema.pre('save', function (next) {
+  var user = this;
+  if (this.isModified('password') || this.isNew) {
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) {
+        return next(err);
+      }
+      bcrypt.hash(user.password, salt, null, function (err, hash) {
+        if (err) {
+          return next(err);
+        }
+        user.password = hash;
+        next();
+      });
+    });
+  } else {
+    return next();
+  }
+});
+
+UserSchema.methods.comparePassword = function (passw, cb) {
+  bcrypt.compare(passw, this.password, function (err, isMatch) {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, isMatch);
+  });
+};
+
+module.exports = mongoose.model('User', UserSchema);
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 ;
 
 var _temp = function () {
@@ -2559,9 +2691,15 @@ var _temp = function () {
     return;
   }
 
+<<<<<<< HEAD
   __REACT_HOT_LOADER__.register(UserSchema, 'UserSchema', '/Users/crizzcoxx/dev/magnet/models/user.js');
 
   __REACT_HOT_LOADER__.register(User, 'User', '/Users/crizzcoxx/dev/magnet/models/user.js');
+=======
+  __REACT_HOT_LOADER__.register(Schema, 'Schema', '/Users/crizzcoxx/dev/magnet/models/user.js');
+
+  __REACT_HOT_LOADER__.register(UserSchema, 'UserSchema', '/Users/crizzcoxx/dev/magnet/models/user.js');
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 }();
 
 ;
@@ -2903,12 +3041,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__client_root__ = __webpack_require__("./client/root.jsx");
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 
 
 
 
 
+var auth = __webpack_require__("./routes/auth.js");
+var book = __webpack_require__("./routes/book.js");
 
+var favicon = __webpack_require__("serve-favicon");
 
 
 var auth = __webpack_require__("./routes/auth.js");
@@ -2934,9 +3081,15 @@ mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet
 });
 
 var app = __WEBPACK_IMPORTED_MODULE_1_express___default()();
+<<<<<<< HEAD
 
 app.use(__WEBPACK_IMPORTED_MODULE_5_express_logging___default()(__WEBPACK_IMPORTED_MODULE_6_logops___default.a));
 
+=======
+
+app.use(__WEBPACK_IMPORTED_MODULE_5_express_logging___default()(__WEBPACK_IMPORTED_MODULE_6_logops___default.a));
+
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 app.use(__WEBPACK_IMPORTED_MODULE_4_body_parser___default.a.urlencoded({
   extended: false
 }));
@@ -2948,8 +3101,13 @@ app.use(favicon('favicon.ico'));
 app.get('/testendpoint', function (req, res) {
   res.send('Hello homeboyz');
 });
+<<<<<<< HEAD
 // app.use('/api/book', book)
 // app.use('/api/auth', auth)
+=======
+app.use('/api/book', book);
+app.use('/api/auth', auth);
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 
 app.get('*', function (req, res) {
   var application = Object(__WEBPACK_IMPORTED_MODULE_3_react_dom_server__["renderToString"])(
@@ -3000,6 +3158,16 @@ module.exports = require("axios");
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ "bcrypt-nodejs":
+/***/ (function(module, exports) {
+
+module.exports = require("bcrypt-nodejs");
+
+/***/ }),
+
+>>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 /***/ "bluebird":
 /***/ (function(module, exports) {
 
