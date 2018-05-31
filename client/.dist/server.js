@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6bf95afaf291b7308cc1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7c8c11864e7180b37acf"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1153,11 +1153,11 @@ var RegisterUser = function (_Component) {
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/users/register', {
         firstName: firstName,
         lastName: lastName,
-        email: email,
         username: username,
-        userRole: userRole,
+        email: email,
         password: password,
-        password2: password2
+        password2: password2,
+        userRole: userRole
       }).then(function (response) {
         console.log(response);
       }).catch(function (err) {
@@ -1166,11 +1166,11 @@ var RegisterUser = function (_Component) {
       this.setState({
         firstName: '',
         lastName: '',
-        email: '',
         username: '',
-        userRole: '',
+        email: '',
         password: '',
-        password2: ''
+        password2: '',
+        userRole: ''
       });
     }
   }, {

@@ -39,11 +39,11 @@ class RegisterUser extends Component {
       .post('/users/register', {
         firstName,
         lastName,
-        email,
         username,
-        userRole,
+        email,
         password,
         password2,
+        userRole,
       })
       .then((response) => {
         console.log(response)
@@ -54,11 +54,11 @@ class RegisterUser extends Component {
     this.setState({
       firstName: '',
       lastName: '',
-      email: '',
       username: '',
-      userRole: '',
+      email: '',
       password: '',
       password2: '',
+      userRole: '',
     })
   }
 
