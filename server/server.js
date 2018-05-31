@@ -1,18 +1,28 @@
+import { StaticRouter } from 'react-router'
 import express from 'express'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import bodyParser from 'body-parser'
 import expressLogging from 'express-logging'
 import logger from 'logops'
-import { StaticRouter } from 'react-router'
+import path from 'path'
+import Root from '../client/root'
+
+const auth = require('../routes/auth')
+const book = require('../routes/book')
+
+const favicon = require('serve-favicon')
+
+
 // import { Provider } from 'react-redux'
 // import { createStore } from 'redux'
 // import reducers from '../client/src/reducers'
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
-import Root from '../client/root.jsx'
 
-mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet')
+mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet', {
+  promiseLibrary: require('bluebird')
+})
   .then(() => { // if all is ok we will be here
     console.log('You are connected in more ways then you know')
   })
@@ -25,9 +35,19 @@ const app = express()
 
 app.use(expressLogging(logger))
 
+app.use(bodyParser.urlencoded({
+  extended: false,
+}))
+app.use(bodyParser.json())
+
+// app.use(favicon(path.join(__dirname, './client/.dist', 'favicon.ico')))
+app.use(favicon('favicon.ico'))
+
 app.get('/testendpoint', (req, res) => {
   res.send('Hello homeboyz')
 })
+// app.use('/api/book', book)
+// app.use('/api/auth', auth)
 
 app.get('*', (req, res) => {
   const application = renderToString(
