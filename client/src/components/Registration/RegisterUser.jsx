@@ -15,8 +15,9 @@ class RegisterUser extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      email: '',
       username: '',
+      email: '',
+      companyName: '',
       userRole: '',
       password: '',
       password2: '',
@@ -33,7 +34,7 @@ class RegisterUser extends Component {
 
   handleSubmit() {
     const {
-      firstName, lastName, email, username, userRole, password, password2,
+      firstName, lastName, username, email, companyName, userRole, password, password2,
     } = this.state
     axios
       .post('/users/register', {
@@ -41,9 +42,10 @@ class RegisterUser extends Component {
         lastName,
         username,
         email,
+        companyName,
+        userRole,
         password,
         password2,
-        userRole,
       })
       .then((response) => {
         console.log(response)
@@ -56,15 +58,16 @@ class RegisterUser extends Component {
       lastName: '',
       username: '',
       email: '',
+      companyName,
+      userRole: '',
       password: '',
       password2: '',
-      userRole: '',
     })
   }
 
   render() {
     const {
-      firstName, lastName, email, username, userRole, password, password2,
+      firstName, lastName, username, email, companyName, userRole, password, password2,
     } = this.state
     const { value } = this.state
 
