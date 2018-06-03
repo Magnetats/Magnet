@@ -14,7 +14,7 @@ class RegisterUser extends Component {
 
     this.state = {
       firstName: '',
-      // lastName: '',
+      lastName: '',
       email: '',
       username: '',
       userRole: '',
