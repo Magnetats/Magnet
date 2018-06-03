@@ -2,10 +2,6 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import UserHome from './src/components/UserHome/LeftNav/LeftNav'
 import HomePage from './src/components/HomePage/HomePage'
-<<<<<<< HEAD
-=======
-import registerServiceWorker from './src/registerServiceWorkers'
->>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 import RegisterUser from './src/components/Registration/RegisterUser'
 import Login from './src/components/Registration/Login'
 
@@ -21,11 +17,6 @@ const Root = () => (
   </Switch>
 )
 
-<<<<<<< HEAD
-=======
-registerServiceWorker()
-
->>>>>>> dfd93e32b7147c09a8f61844bc1e83c75c904694
 export default Root
 // import React, { Component } from 'react'
 // import { Switch, Route } from 'react-router-dom'
