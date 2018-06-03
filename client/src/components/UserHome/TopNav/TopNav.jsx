@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { appGrayLight } from "../../../styling/theme/variables.js";
-import Logo from '../../Logo.jsx'
+import { appGrayLight } from '../../../styling/theme/variables'
+import Logo from '../../Logo'
 
-const TopNavDiv = styled.div `
+const TopNavDiv = styled.div`
   &&& a {
-    color: ${appGrayLight};
+    color: ${appGrayLight}
   }
   .ui.top.fixed.menu {
     height: 55px;
@@ -33,7 +33,7 @@ const TopNav = () => {
         <div className="item">
           <img src="/images/logo.png" />
         </div>
-        <a className="item">Features</a>
+        <a className="item">Hey Girl Hey</a>
         <a className="item">Testimonials</a>
         <a className="item">Sign-in</a>
       </div>

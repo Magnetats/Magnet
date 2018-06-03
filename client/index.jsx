@@ -25,7 +25,7 @@ injectGlobal`
 `
 
 const renderApp = (Component) => {
-  hydrate (
+  hydrate(
     <AppContainer>
       {/* <Provider store={store}> */}
       <BrowserRouter>

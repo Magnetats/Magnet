@@ -13,7 +13,6 @@ const book = require('../routes/book')
 
 const favicon = require('serve-favicon')
 
-
 // import { Provider } from 'react-redux'
 // import { createStore } from 'redux'
 // import reducers from '../client/src/reducers'
