@@ -59,7 +59,7 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new ExtractTextPlugin({
-			filename: "[name].[contenthash].css"
+			filename: "[name].[md5:contenthash:hex:20].css"
 		}),
 		new webpack.DefinePlugin({
 			"process.env": {
