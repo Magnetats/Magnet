@@ -77,18 +77,23 @@ class RegisterUser extends Component {
           <Form.Group>
             <Form.Input
               fluid
-              label="First name"
-              placeholder="First name"
+              label="First Name"
+              placeholder="First Name"
             />
             <Form.Input
               fluid
-              label="Last name"
-              placeholder="Last name"
+              label="Last Name"
+              placeholder="Last Name"
             />
             <Form.Input
               fluid
-              label="User Name"
-              placeholder="User Name"
+              label="Email"
+              placeholder="Email"
+            />
+            <Form.Input
+              fluid
+              label="Username"
+              placeholder="Username"
             />
             <Form.Input
               fluid
@@ -102,8 +107,8 @@ class RegisterUser extends Component {
             />
             <Form.Input
               fluid
-              label="Repeat Password"
-              placeholder="Repeat Password"
+              label="Confirm Password"
+              placeholder="Confirm Password"
             />
             <Form.Select
               fluid
