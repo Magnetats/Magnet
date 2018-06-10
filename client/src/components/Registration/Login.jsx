@@ -23,16 +23,12 @@ class Login extends Component {
   handleSubmit() {
     const { username, password } = this.state
     axios
-      .post('/users/login', {
+      .post('/testendpoint', {
         username,
-        password
+        password,
       })
       .then((response) => {
-        console.log('🏁', response.data)
-        // Window['userId'] = response.data
-
-        console.log()
-        this.props.history.push('/userhome')
+        console.log('info back from server in login file', response.data)
       })
       .catch((err)=> {
         console.log(err)
@@ -47,12 +43,26 @@ class Login extends Component {
       <div className="ui text container">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Input placeholder='Username' name='username' value={username} onChange={this.handleChange} />
-            <Form.Input placeholder='Password' name='password' value={password} onChange={this.handleChange} />
-            <Form.Button content='Submit' />
+            <Form.Input
+              placeholder="Username"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <Form.Button
+              type="submit"
+              Value="Log in"
+            >Log in
+            </Form.Button>
           </Form.Group>
         </Form>
-    </div>
+      </div>
     )
   }
 }

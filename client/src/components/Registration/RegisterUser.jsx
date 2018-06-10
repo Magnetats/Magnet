@@ -17,10 +17,10 @@ class RegisterUser extends Component {
       lastName: '',
       username: '',
       email: '',
-      companyName: '',
-      userRole: '',
       password: '',
       password2: '',
+      companyName: '',
+      userRole: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,27 +30,21 @@ class RegisterUser extends Component {
     this.setState({
       [name]: value,
     })
+    console.log(value)
   }
 
   handleSubmit() {
     const {
-      firstName, lastName, username, email, companyName, userRole, password, password2,
+      firstName, lastName, username, email, password, password2, companyName, userRole,
     } = this.state
     axios
-      .post('/users/register', {
-        firstName,
-        lastName,
-        username,
-        email,
-        companyName,
-        userRole,
-        password,
-        password2,
+      .post('/ registerUser', {
+        firstName, lastName, username, email, password, password2, companyName, userRole,
       })
       .then((response) => {
-        console.log(response)
+        console.log('data back from server received in reg form', response)
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log(err)
       })
     this.setState({
@@ -58,164 +52,108 @@ class RegisterUser extends Component {
       lastName: '',
       username: '',
       email: '',
-      companyName,
-      userRole: '',
       password: '',
       password2: '',
+      companyName: '',
+      userRole: '',
     })
   }
 
   render() {
     const {
-      firstName, lastName, username, email, companyName, userRole, password, password2,
+      firstName, lastName, username, email, password, password2, companyName, userRole,
     } = this.state
-    const { value } = this.state
 
     return (
       <div className="ui text container">
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Input
               fluid
               label="First Name"
               placeholder="First Name"
+              name="firstName"
+              value={firstName}
+              onChange={this.handleChange}
+              width={2}
             />
             <Form.Input
               fluid
               label="Last Name"
               placeholder="Last Name"
+              name="lastName"
+              value={lastName}
+              onChange={this.handleChange}
+              width={2}
             />
             <Form.Input
               fluid
               label="Email"
               placeholder="Email"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+              width={3}
             />
             <Form.Input
               fluid
               label="Username"
               placeholder="Username"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+              width={2}
             />
+          </Form.Group>
+          <Form.Group>
+            <Form.Input
+              fluid
+              type="password"
+              label="Password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              fluid
+              type="password"
+              label="Confirm Password"
+              placeholder="Confirm Password"
+              name="password2"
+              value={password2}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group>
             <Form.Input
               fluid
               label="Company Name"
               placeholder="Company Name"
-            />
-            <Form.Input
-              fluid
-              label="Password"
-              placeholder="Password"
-            />
-            <Form.Input
-              fluid
-              label="Confirm Password"
-              placeholder="Confirm Password"
+              name="companyName"
+              value={companyName}
+              onChange={this.handleChange}
             />
             <Form.Select
               fluid
               label="I am a"
               options={options}
               placeholder="Super Hero"
-            />
-          </Form.Group>
-          {/* <Form.Group inline>
-            <label>Size</label>
-            <Form.Radio
-              label="Small"
-              value="sm"
-              checked={value === "sm"}
+              name="userRole"
+              value={userRole}
               onChange={this.handleChange}
             />
-            <Form.Radio label='Medium' value='md' checked={value === 'md'} onChange={this.handleChange} />
-            <Form.Radio label='Large' value='lg' checked={value === 'lg'} onChange={this.handleChange} />
-          </Form.Group> */}
-          <Form.Checkbox label="I agree to the Terms and Conditions" />
-          <Form.Button>Submit</Form.Button>
-        </Form>
-        {/* <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Input placeholder='Name' name='name' value={name} onChange={this.handleChange} />
-            <Form.Input placeholder='Email' name='email' value={email} onChange={this.handleChange} />
-            <Form.Input placeholder='Username' name='username' value={username} onChange={this.handleChange} />
-            <Form.Input placeholder='Password' name='password' value={password} onChange={this.handleChange} />
-            <Form.Input placeholder='Confirm Password' name='password2' value={password2} onChange={this.handleChange} />
-            <Form.Button content='Submit' />
           </Form.Group>
-        </Form> */}
+          <Form.Checkbox label="I agree to the Terms and Conditions" />
+          <Form.Button
+            type="submit"
+            Value="Register"
+          >Register
+          </Form.Button>
+        </Form>
       </div>
     )
   }
 }
 
 export default RegisterUser
-
-// import React, { Component } from 'react'
-// import { Popup, Button, Header, Image, Modal, Form, Message } from 'semantic-ui-react'
-
-// class RegisterUser extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       open: false,
-//     }
-//      this.handleItemClick = this.handleItemClick.bind(this)
-//    }
-
-//   show = dimmer => () => this.setState({ dimmer, open: true })
-//   close = () => this.setState({ open: false })
-
-//   render() {
-//     const { open, dimmer } = this.state
-
-//     return (
-//       <div>
-//         {/* <Button onClick={this.show(true)}>Default</Button>
-//         <Button onClick={this.show('inverted')}>Inverted</Button> */}
-//         <Button onClick={this.show('blurring')}>Blurring</Button>
-//         <Popup trigger={<Button onClick={this.show(false)}>None</Button>}>
-//           <Popup.Header>Heads up!</Popup.Header>
-//           <Popup.Content>
-//             By default, a Modal closes when escape is pressed or when the dimmer is
-//             clicked. Setting the dimmer to "None" (dimmer={'{'}false{'}'}) means that there is no
-//             dimmer to click so clicking outside won't close the Modal. To close on
-//             outside click when there's no dimmer, you can pass the "closeOnDocumentClick" prop.
-//           </Popup.Content>
-//         </Popup>
-
-//         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-//           <Modal.Header>Select a Photo</Modal.Header>
-//           <Modal.Content image>
-//             <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
-//             <Modal.Description>
-//               <Header>Default Profile Image</Header>
-//               <p>We've found the following gravatar image associated with your e-mail address.</p>
-//               <p>Is it okay to use this photo?</p>
-//             </Modal.Description>
-//           </Modal.Content>
-//           <Modal.Actions>
-//             <Button color='black' onClick={this.close}>
-//               Nope
-//             </Button>
-//             <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
-//           </Modal.Actions>
-//         </Modal>
-//       </div>
-//     )
-//   }
-// }
-
-// export default RegisterUser
-
-
-// const FormExampleSuccess = () => (
-//   <Form success>
-//     <Form.Input label='Email' placeholder='joe@schmoe.com' />
-//     <Message
-//       success
-//       header='Form Completed'
-//       content="You're all signed up for the newsletter"
-//     />
-//     <Button>Submit</Button>
-//   </Form>
-// )
-
-// export default FormExampleSuccess

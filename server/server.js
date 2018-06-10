@@ -1,18 +1,25 @@
 import { StaticRouter } from 'react-router'
 import express from 'express'
+import session from 'express-session'
+import uuid from 'uuid/v4'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import bodyParser from 'body-parser'
 import expressLogging from 'express-logging'
 import logger from 'logops'
-import path from 'path'
+// import path from 'path'
+import passport from 'passport'
 import Root from '../client/root'
+import routes from '../routes/router'
 
-const auth = require('../routes/auth')
-const book = require('../routes/book')
+const MongoStore = require('connect-mongo')(session)
+// import auth from '../routes/auth'
+// import book from '../routes/book'
+
+// const FileStore = require('session-file-store')(session)
+// const LocalStrategy = require('passport-local').Strategy
 
 const favicon = require('serve-favicon')
-
 // import { Provider } from 'react-redux'
 // import { createStore } from 'redux'
 // import reducers from '../client/src/reducers'
@@ -20,7 +27,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 
 mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet', {
-  promiseLibrary: require('bluebird')
+  promiseLibrary: require('bluebird'),
 })
   .then(() => { // if all is ok we will be here
     console.log('You are connected in more ways then you know')
@@ -29,24 +36,126 @@ mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet
     console.error('App starting error:', err.stack)
     process.exit(1)
   })
+const db = mongoose.connection
+
+// const users = [
+//   {id: '2f24vvg', email: 'test@test.com', password: 'password'}
+// ]
+
+// // configure passport.js to use the local strategy
+// passport.use(new LocalStrategy(
+//   { usernameField: 'email' },
+//   (email, password, done) => {
+//     console.log('Inside local strategy callback')
+//     // here is where you make a call to the database
+//     // to find the user based on their username or email address
+//     // for now, we'll just pretend we found that it was users[0]
+//     const user = users[0]
+//     if (email === user.email && password === user.password) {
+//       console.log('Local strategy returned true')
+//       return done(null, user)
+//     }
+//   },
+// ))
+
+// tell passport how to serialize the user
+// passport.serializeUser((user, done) => {
+//   console.log('Inside serializeUser callback. User id is save to the session file store here')
+//   done(null, user.id)
+// })
+
+// passport.deserializeUser((id, done) => {
+//   console.log('Inside deserializeUser callback')
+//   console.log(`The user id passport saved in the session file store is: ${id}`)
+//   const user = users[0].id === id ? users[0] : false
+//   done(null, user)
+// })
 
 const app = express()
 
+//use sessions for tracking logins
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db,
+  }),
+}))
+
 app.use(expressLogging(logger))
 
-app.use(bodyParser.urlencoded({
-  extended: false,
-}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// app.use(favicon(path.join(__dirname, './client/.dist', 'favicon.ico')))
 app.use(favicon('favicon.ico'))
 
-app.get('/testendpoint', (req, res) => {
-  res.send('Hello homeboyz')
+app.use('/', routes)
+app.use('/register', routes)
+
+app.post('/testendpoint', (req, res) => {
+  console.log('whats in server under testendpoint', req.body)
+  const data = req.body
+  const uniqueId = uuid()
+  // res.send(`test page. Received the unique id: ${uniqueId}\n`)
+  // res.send('hello sailor')
+  res.send('data coming back from server', data)
 })
 // app.use('/api/book', book)
 // app.use('/api/auth', auth)
+// add & configure middleware
+// app.use(session({
+//   genid: (req) => {
+//     console.log('Inside the session middleware')
+//     console.log(req.sessionID)
+//     return uuid() // use UUIDs for session IDs
+//   },
+//   store: new FileStore(),
+//   secret: 'keyboard cat',
+//   resave: false,
+//   saveUninitialized: true,
+// }))
+// app.use(passport.initialize())
+// app.use(passport.session())
+
+// app.get('/', (req, res) => {
+//   console.log('Inside the homepage callback function')
+//   console.log(req.sessionID)
+//   res.send(`You hit home page!\n`)
+// })
+
+// // create the login get and post routes
+// app.get('/login', (req, res) => {
+//   console.log('Inside GET /login callback')
+//   console.log(req.sessionID)
+//   res.send(`You got the login page!\n`)
+// })
+
+// app.post('/login', (req, res, next) => {
+//   console.log('Inside POST /login callback')
+//   passport.authenticate('local', (err, user, info) => {
+//     console.log('Inside passport.authenticate() callback')
+//     console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
+//     console.log(`req.user: ${JSON.stringify(req.user)}`)
+//     req.login(user, (err) => {
+//       console.log('Inside req.login() callback')
+//       console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
+//       console.log(`req.user: ${JSON.stringify(req.user)}`)
+//       return res.send('You were authenticated & logged in!\n')
+//     })
+//   })(req, res, next)
+// })
+
+// app.get('/authrequired', (req, res) => {
+//   console.log('Inside GET /authrequired callback')
+//   console.log(`User authenticated? ${req.isAuthenticated()}`)
+//   if (req.isAuthenticated()) {
+//     res.send('you hit the authentication endpoint\n')
+//   } else {
+//     res.redirect('/')
+//   }
+// })
+
 
 app.get('*', (req, res) => {
   const application = renderToString(
@@ -80,4 +189,19 @@ app.get('*', (req, res) => {
     </html>`
   res.send(html)
 })
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  let err = new Error('File Not Found')
+  err.status = 404
+  next(err)
+})
+
+// error handler
+// define as the last app.use callback
+app.use((err, req, res, next) => {
+  res.status(err.status || 500)
+  res.send(err.message)
+})
+
 export default app
