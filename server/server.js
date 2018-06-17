@@ -1,18 +1,22 @@
 import { StaticRouter } from 'react-router'
 import express from 'express'
-import session from 'express-session'
+// import session from 'express-session'
 import uuid from 'uuid/v4'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import bodyParser from 'body-parser'
 import expressLogging from 'express-logging'
 import logger from 'logops'
+import cookieParser from 'cookie-parser'
 // import path from 'path'
-import passport from 'passport'
 import Root from '../client/root'
-import routes from '../routes/router'
+import dbConfig from '../database/db'
 
-const MongoStore = require('connect-mongo')(session)
+const passport = require('passport')
+const expressSession = require('express-session')
+// const routes = require('../routes/router')(passpoart)
+
+// const MongoStore = require('connect-mongo')(session)
 // import auth from '../routes/auth'
 // import book from '../routes/book'
 
@@ -26,7 +30,7 @@ const favicon = require('serve-favicon')
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 
-mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet', {
+mongoose.connect(dbConfig.url, {
   promiseLibrary: require('bluebird'),
 })
   .then(() => { // if all is ok we will be here
@@ -36,7 +40,7 @@ mongoose.connect('mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet
     console.error('App starting error:', err.stack)
     process.exit(1)
   })
-const db = mongoose.connection
+// const db = mongoose.connection
 
 // const users = [
 //   {id: '2f24vvg', email: 'test@test.com', password: 'password'}
@@ -70,36 +74,49 @@ const db = mongoose.connection
 //   const user = users[0].id === id ? users[0] : false
 //   done(null, user)
 // })
-
+//use sessions for tracking logins
+// app.use(session({
+//   secret: 'work hard',
+//   resave: true,
+//   saveUninitialized: false,
+//   store: new MongoStore({
+//     mongooseConnection: db,
+//   }),
+// }))
 const app = express()
 
-//use sessions for tracking logins
-app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: db,
-  }),
-}))
-
-app.use(expressLogging(logger))
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
 app.use(favicon('favicon.ico'))
+app.use(expressLogging(logger))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
+
+app.use(expressSession({
+  secret: 'mySecretKey',
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+const flash = require('connect-flash')
+// Using the flash middleware provided by connect-flash to store messages in session
+app.use(flash())
+// Initialize Passport
+const initPassport = require('../passport/init')
+
+initPassport(passport)
+
+const routes = require('../routes/index')(passport)
 
 app.use('/', routes)
-app.use('/register', routes)
+// app.use('/register', routes)
 
 app.post('/testendpoint', (req, res) => {
   console.log('whats in server under testendpoint', req.body)
   const data = req.body
   const uniqueId = uuid()
-  // res.send(`test page. Received the unique id: ${uniqueId}\n`)
-  // res.send('hello sailor')
-  res.send('data coming back from server', data)
+  res.send(`test page. Received the unique id: ${uniqueId}\n`)
+  res.send('hello sailor')
+  // res.send('data coming back from server', data)
 })
 // app.use('/api/book', book)
 // app.use('/api/auth', auth)

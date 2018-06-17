@@ -23,7 +23,7 @@ class Login extends Component {
   handleSubmit() {
     const { username, password } = this.state
     axios
-      .post('/testendpoint', {
+      .post('/login', {
         username,
         password,
       })
@@ -52,12 +52,13 @@ class Login extends Component {
             <Form.Input
               placeholder="Password"
               name="password"
+              type="password"
               value={password}
               onChange={this.handleChange}
             />
             <Form.Button
               type="submit"
-              Value="Log in"
+              value="Log in"
             >Log in
             </Form.Button>
           </Form.Group>

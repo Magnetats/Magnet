@@ -1,4 +1,6 @@
-// //future use to modularize the mongo connection
+module.exports = {
+  'url': 'mongodb://crizzcoxx:Bulletproof@ds151433.mlab.com:51433/magnet'
+}
 // const mongoose = require('mongoose')
 // mongoose.Promise = require('bluebird')
 

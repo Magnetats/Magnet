@@ -38,7 +38,7 @@ class RegisterUser extends Component {
       firstName, lastName, username, email, password, password2, companyName, userRole,
     } = this.state
     axios
-      .post('/ registerUser', {
+      .post('/signup', {
         firstName, lastName, username, email, password, password2, companyName, userRole,
       })
       .then((response) => {
@@ -147,7 +147,7 @@ class RegisterUser extends Component {
           <Form.Checkbox label="I agree to the Terms and Conditions" />
           <Form.Button
             type="submit"
-            Value="Register"
+            value="Register"
           >Register
           </Form.Button>
         </Form>
