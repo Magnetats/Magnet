@@ -8,8 +8,8 @@ import Login from './src/components/Registration/Login'
 const Root = () => (
   <Switch>
     <Route exact path="/" component={HomePage} />
-    <Route path="/home" component={UserHome} />
     <Route path="/login" component={Login} />
+    <Route path="/home" component={UserHome} />
     <Route path="/register" component={RegisterUser} />
     {/* <Route path="/userhome" component={UserHome} /> */}
     {/* <Route path="/goal/:id" component={CheckIn} /> */}
