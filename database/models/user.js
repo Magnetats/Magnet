@@ -13,7 +13,7 @@ module.exports = mongoose.model('User', {
     type: Date, default: Date.now
   },
   updated: Date,
-  isAdmin: { type: Boolean, default: false }
+  isAdmin: { type: Boolean, default: false },
 })
 
 // const mongoose = require('mongoose')
