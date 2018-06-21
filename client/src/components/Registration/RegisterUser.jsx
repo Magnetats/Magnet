@@ -42,7 +42,7 @@ class RegisterUser extends Component {
         firstName, lastName, username, email, password, password2, companyName, userRole,
       })
       .then((response) => {
-        console.log('data back from server received in reg form', response)
+        console.log('data back from server received in reg form', response.config.data)
       })
       .catch((err) => {
         console.log(err)

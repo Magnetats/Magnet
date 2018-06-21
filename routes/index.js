@@ -9,37 +9,29 @@ const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next()
   // if the user is not authenticated then redirect him to the login page
-  res.redirect('/')
+  res.redirect('/login')
 }
-
-/* GET Home Page */
-router.get('/home', isAuthenticated, (req, res) => {
-  res.redirect('/home', {
-    user: req.user,
-  })
-})
 
 module.exports = (passport) => {
   /* GET login page. */
   router.get('/', (req, res) => {
     // Display the Login page with any flash message, if any
-    res.redirect('/', {
+    res.render('index', {
       message: req.flash('message'),
     })
   })
   /* Handle Login POST */
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/home',
-    failureRedirect: '/',
+    failureRedirect: '/login',
     failureFlash: true,
   }))
   /* GET Registration Page */
-  router.get('/signup', (req, res) => {
-    res.redirect('/register', {
-      message: req.flash('message'),
-    })
-  })
-
+  // router.get('/signup', (req, res) => {
+  //   res.render('register', {
+  //     message: req.flash('message'),
+  //   })
+  // })
   /* Handle Registration POST */
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/home',
@@ -52,11 +44,15 @@ module.exports = (passport) => {
   //     user: req.user,
   //   })
   // })
-
+  router.get('/home', isAuthenticated, (req, res) => {
+    res.status(200).json({
+      user: req.user,
+    })
+  })
   /* Handle Logout */
   router.get('/signout', (req, res) => {
     req.logout()
-    res.redirect('/signin')
+    res.redirect('/')
   })
   return router
 }

@@ -28,9 +28,9 @@ class Login extends Component {
         password,
       })
       .then((response) => {
-        console.log('info back from server in login file', response.data)
+        console.log('data back from server received in login form', response.config.data)
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log(err)
       })
     this.setState({ username: '', password: '' })

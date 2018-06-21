@@ -9,8 +9,8 @@ const Root = () => (
   <Switch>
     <Route exact path="/" component={HomePage} />
     <Route path="/login" component={Login} />
-    <Route path="/home" component={UserHome} />
     <Route path="/register" component={RegisterUser} />
+    <Route path="/home" component={UserHome} />
     {/* <Route path="/userhome" component={UserHome} /> */}
     {/* <Route path="/goal/:id" component={CheckIn} /> */}
     {/* <Route component={NotFound} /> */}

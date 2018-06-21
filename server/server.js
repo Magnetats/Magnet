@@ -1,6 +1,5 @@
 import { StaticRouter } from 'react-router'
 import express from 'express'
-// import session from 'express-session'
 import uuid from 'uuid/v4'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -8,20 +7,11 @@ import bodyParser from 'body-parser'
 import expressLogging from 'express-logging'
 import logger from 'logops'
 import cookieParser from 'cookie-parser'
-// import path from 'path'
 import Root from '../client/root'
 import dbConfig from '../database/db'
 
 const passport = require('passport')
 const expressSession = require('express-session')
-// const routes = require('../routes/router')(passpoart)
-
-// const MongoStore = require('connect-mongo')(session)
-// import auth from '../routes/auth'
-// import book from '../routes/book'
-
-// const FileStore = require('session-file-store')(session)
-// const LocalStrategy = require('passport-local').Strategy
 
 const favicon = require('serve-favicon')
 // import { Provider } from 'react-redux'
@@ -40,28 +30,6 @@ mongoose.connect(dbConfig.url, {
     console.error('App starting error:', err.stack)
     process.exit(1)
   })
-// const db = mongoose.connection
-
-// const users = [
-//   {id: '2f24vvg', email: 'test@test.com', password: 'password'}
-// ]
-
-// // configure passport.js to use the local strategy
-// passport.use(new LocalStrategy(
-//   { usernameField: 'email' },
-//   (email, password, done) => {
-//     console.log('Inside local strategy callback')
-//     // here is where you make a call to the database
-//     // to find the user based on their username or email address
-//     // for now, we'll just pretend we found that it was users[0]
-//     const user = users[0]
-//     if (email === user.email && password === user.password) {
-//       console.log('Local strategy returned true')
-//       return done(null, user)
-//     }
-//   },
-// ))
-
 // tell passport how to serialize the user
 // passport.serializeUser((user, done) => {
 //   console.log('Inside serializeUser callback. User id is save to the session file store here')
@@ -74,15 +42,6 @@ mongoose.connect(dbConfig.url, {
 //   const user = users[0].id === id ? users[0] : false
 //   done(null, user)
 // })
-//use sessions for tracking logins
-// app.use(session({
-//   secret: 'work hard',
-//   resave: true,
-//   saveUninitialized: false,
-//   store: new MongoStore({
-//     mongooseConnection: db,
-//   }),
-// }))
 const app = express()
 
 app.use(favicon('favicon.ico'))
@@ -98,17 +57,14 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const flash = require('connect-flash')
-// Using the flash middleware provided by connect-flash to store messages in session
+// Using flash middleware storing messages in session
 app.use(flash())
-// Initialize Passport
+// Initializing Passport
 const initPassport = require('../passport/init')
 
 initPassport(passport)
 
 const routes = require('../routes/index')(passport)
-
-app.use('/', routes)
-// app.use('/register', routes)
 
 app.post('/testendpoint', (req, res) => {
   console.log('whats in server under testendpoint', req.body)
@@ -120,33 +76,6 @@ app.post('/testendpoint', (req, res) => {
 })
 // app.use('/api/book', book)
 // app.use('/api/auth', auth)
-// add & configure middleware
-// app.use(session({
-//   genid: (req) => {
-//     console.log('Inside the session middleware')
-//     console.log(req.sessionID)
-//     return uuid() // use UUIDs for session IDs
-//   },
-//   store: new FileStore(),
-//   secret: 'keyboard cat',
-//   resave: false,
-//   saveUninitialized: true,
-// }))
-// app.use(passport.initialize())
-// app.use(passport.session())
-
-// app.get('/', (req, res) => {
-//   console.log('Inside the homepage callback function')
-//   console.log(req.sessionID)
-//   res.send(`You hit home page!\n`)
-// })
-
-// // create the login get and post routes
-// app.get('/login', (req, res) => {
-//   console.log('Inside GET /login callback')
-//   console.log(req.sessionID)
-//   res.send(`You got the login page!\n`)
-// })
 
 // app.post('/login', (req, res, next) => {
 //   console.log('Inside POST /login callback')
@@ -172,7 +101,6 @@ app.post('/testendpoint', (req, res) => {
 //     res.redirect('/')
 //   }
 // })
-
 
 app.get('*', (req, res) => {
   const application = renderToString(
@@ -206,6 +134,8 @@ app.get('*', (req, res) => {
     </html>`
   res.send(html)
 })
+
+app.use('/', routes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
