@@ -6,7 +6,8 @@ import { renderToString } from 'react-dom/server'
 import bodyParser from 'body-parser'
 import expressLogging from 'express-logging'
 import logger from 'logops'
-import cookieParser from 'cookie-parser'
+import path from 'path'
+import serveStatic from 'serve-static'
 import Root from '../client/root'
 import dbConfig from '../database/db'
 
@@ -44,14 +45,23 @@ mongoose.connect(dbConfig.url, {
 // })
 const app = express()
 
+// app.use('/home', express.static(path.join(__dirname, 'public')))
+
 app.use(favicon('favicon.ico'))
 app.use(expressLogging(logger))
+app.use(express.static('client'))
+app.use(express.static('routes'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
 
 app.use(expressSession({
+  key: 'user_sid',
   secret: 'mySecretKey',
+  resave: false,
+  saveUninitialized: false,
+  // cookie: {
+  //   expires: 600000,
+  // },
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -117,7 +127,7 @@ app.get('*', (req, res) => {
       <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>HMR all the things!</title>
+        <title>Magnet</title>
         <meta name="description" content="">
         <meta name="viewport"
         content="width=device-width,  initial-scale=1">

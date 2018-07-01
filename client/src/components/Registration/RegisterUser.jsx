@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect, withRouter } from 'react-router-dom'
 import { Popup, Button, Header, Image, Modal, Checkbox, Form, Message } from 'semantic-ui-react'
 
 const options = [
@@ -21,6 +22,7 @@ class RegisterUser extends Component {
       password2: '',
       companyName: '',
       userRole: '',
+      isLoggedIn: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -37,12 +39,21 @@ class RegisterUser extends Component {
     const {
       firstName, lastName, username, email, password, password2, companyName, userRole,
     } = this.state
+    const { history } = this.props
+    history.listen((e) => {
+      console.log('listen to your history in registration', e.pathname)
+    })
     axios
-      .post('/signup', {
+      .post('/api/signup', {
         firstName, lastName, username, email, password, password2, companyName, userRole,
       })
       .then((response) => {
         console.log('data back from server received in reg form', response.config.data)
+        console.log('this is my props from server coming back after data', this.props.history)
+        this.setState({
+          isLoggedIn: true,
+        })
+        history.push('/home')
       })
       .catch((err) => {
         console.log(err)
@@ -156,4 +167,4 @@ class RegisterUser extends Component {
   }
 }
 
-export default RegisterUser
+export default withRouter(RegisterUser)

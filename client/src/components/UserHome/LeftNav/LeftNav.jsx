@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   Menu,
@@ -9,7 +10,6 @@ import {
 import { medBlue, darkerWhite, lightBlue } from '../../../styling/theme/variables'
 import TopNav from '../TopNav/TopNav'
 import HomeMain from './HomeDashboard/HomeMain'
-
 class LeftNav extends Component {
   constructor(props) {
     super(props)
@@ -17,6 +17,10 @@ class LeftNav extends Component {
       activeItem: 'home',
     }
     this.handleItemClick = this.handleItemClick.bind(this)
+  }
+
+  componentDidMount() {
+    console.log('props after home page loads after login', this.props)
   }
 
   handleItemClick(e, { name }) {
@@ -54,9 +58,9 @@ class LeftNav extends Component {
 
       &&&& {
         width: 0%;
-        min-width: 120px;
-        margin-left: 2.4%;
-        top: 59px;
+        min-width: 100px;
+        /* margin-left: 2.4%; */
+        /* top: 59px; */
         background-color: #fff;
         position: relative;
         margin-top: 50px;
@@ -208,4 +212,4 @@ class LeftNav extends Component {
   }
 }
 
-export default LeftNav
+export default withRouter(LeftNav)

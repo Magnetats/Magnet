@@ -39,6 +39,7 @@ module.exports = (passport) => {
                 throw err
               }
               console.log('User Registration succesful')
+              console.log('this is my session', req.session)
               return done(null, newUser)
             })
           }
