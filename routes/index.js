@@ -9,7 +9,7 @@ const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next()
   // if the user is not authenticated then redirect him to the login page
-  res.redirect('/login')
+  res.redirect('/api/login')
 }
 
 module.exports = (passport) => {
@@ -21,9 +21,9 @@ module.exports = (passport) => {
     })
   })
   /* Handle Login POST */
-  router.post('/login', passport.authenticate('login', {
-    successRedirect: '/home',
-    failureRedirect: '/login',
+  router.post('/api/login', passport.authenticate('login', {
+    successRedirect: '/api/home',
+    failureRedirect: '/api/login',
     failureFlash: true,
   }))
   /* GET Registration Page */
@@ -33,9 +33,9 @@ module.exports = (passport) => {
   //   })
   // })
   /* Handle Registration POST */
-  router.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/home',
-    failureRedirect: '/signup',
+  router.post('/api/signup', passport.authenticate('signup', {
+    successRedirect: '/api/home',
+    failureRedirect: '/api/signup',
     failureFlash: true,
   }))
   // /* GET Home Page */
@@ -44,15 +44,17 @@ module.exports = (passport) => {
   //     user: req.user,
   //   })
   // })
-  router.get('/home', isAuthenticated, (req, res) => {
+  router.get('/api/home', isAuthenticated, (req, res) => {
     res.status(200).json({
       user: req.user,
     })
   })
   /* Handle Logout */
-  router.get('/signout', (req, res) => {
+  router.get('/api/logout', (req, res) => {
+    console.log('logout request data', req)
     req.logout()
-    res.redirect('/')
+    // res.redirect('/api/login')
+    res.send('testing if this endpoint is working')
   })
   return router
 }

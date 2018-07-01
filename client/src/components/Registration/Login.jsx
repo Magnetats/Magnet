@@ -9,6 +9,8 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      validForm: false,
+      isLoggedIn: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,26 +23,48 @@ class Login extends Component {
   }
 
   handleSubmit() {
-    const { username, password } = this.state
-    axios
-      .post('/login', {
-        username,
-        password,
+    const { username, password, validForm } = this.state
+    if (this.state.username === '' || this.state.password === '') {
+      this.setState({
+        validForm: false,
       })
-      .then((response) => {
-        console.log('data back from server received in login form', response.config.data)
+    } else {
+      this.setState({
+        validForm: true,
       })
-      .catch((err) => {
-        console.log(err)
+      const { history } = this.props
+      history.listen((e) => {
+        console.log('listen to your history in login', e.pathname)
       })
-    this.setState({ username: '', password: '' })
+      axios
+        .post('/api/login', {
+          username,
+          password,
+        })
+        .then((response) => {
+          console.log('data back from server received in login form', response.config.data)
+          console.log('this is my props from server coming back after data', this.props)
+          this.state.isLoggedIn = true
+          console.log('state shows logged in true', this.state.isLoggedIn)
+          // alert(`Welcome, you are logged in.`)
+          history.push('/home')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      this.setState({ username: '', password: '' })
+    }
+
   }
 
   render() {
     const { username, password } = this.state
-
     return (
       <div className="ui text container">
+        {/* <Prompt
+          when={this.state.validForm !== true}
+          message="If you leave this page you\'ll lose your data"
+        /> */}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Input

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { appGrayLight } from '../../../styling/theme/variables'
 import Logo from '../../Logo'
+import Logout from './Logout'
 
 const TopNavDiv = styled.div`
   &&& a {
@@ -25,7 +26,7 @@ const TopNav = () => {
         <div className="item" id="logo-box">
           <Logo />
         </div>
-        <a className="item app-top-menu-text">Features</a>
+        <Logout />
         {/* <a className="item">Testimonials</a>
         <a className="item" position="right">Sign-in</a> */}
       </div>

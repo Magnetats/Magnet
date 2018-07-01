@@ -9,7 +9,7 @@ const User = require('../database/models/user')
 // })
 
 //POST route for updating data
-router.post('/registerUser', function (req, res, next) {
+router.post('/api/registerUser', function (req, res, next) {
   // confirm that user typed same password twice
   if (req.body.password !== req.body.passwordConf) {
     let err = new Error('Passwords do not match.')
@@ -43,7 +43,7 @@ router.post('/registerUser', function (req, res, next) {
         return next(error)
       } else {
         req.session.userId = user._id
-        return res.redirect('/home')
+        return res.redirect('/api/home')
       }
     })
 
@@ -55,7 +55,8 @@ router.post('/registerUser', function (req, res, next) {
         return next(err)
       } else {
         req.session.userId = user._id
-        return res.redirect('/home')
+        console.log('this is my cookie from routerjs so I can see it from server', req.session.userId)
+        return res.redirect('/api/home')
       }
     })
   } else {
@@ -64,9 +65,8 @@ router.post('/registerUser', function (req, res, next) {
     return next(err)
   }
 })
-
 // GET route after registering
-router.get('/home', function (req, res, next) {
+router.get('/api/home', function (req, res, next) {
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {
@@ -77,22 +77,23 @@ router.get('/home', function (req, res, next) {
           err.status = 400;
           return next(err);
         } else {
-          return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+          return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/api/logout">Logout</a>')
         }
       }
     })
 })
 
 // GET for logout logout
-router.get('/logout', function (req, res, next) {
+router.get('/api/logout', (req, res, next) => {
   if (req.session) {
+    console.log('this is my session', req.session)
     // delete session object
-    req.session.destroy(function (err) {
+    req.session.destroy((err) => {
+      console.log('session destroyed on server side')
       if (err) {
         return next(err)
-      } else {
-        return res.redirect('/')
       }
+      // return res.redirect('/')
     })
   }
 })
