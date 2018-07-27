@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { appGrayLight } from '../../../styling/theme/variables'
-import Logo from '../../Logo'
+import { appGrayLight } from '../../../../styling/theme/variables'
+import Logo from '../../../Logo'
 import Logout from './Logout'
 
 const TopNavDiv = styled.div`

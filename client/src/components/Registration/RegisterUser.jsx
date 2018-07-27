@@ -23,6 +23,7 @@ class RegisterUser extends Component {
       companyName: '',
       userRole: '',
       isLoggedIn: false,
+      userData: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -43,17 +44,52 @@ class RegisterUser extends Component {
     history.listen((e) => {
       console.log('listen to your history in registration', e.pathname)
     })
-    axios
-      .post('/api/signup', {
+    // axios
+    //   .post('/api/signup', {
+    //     firstName, lastName, username, email, password, password2, companyName, userRole,
+    //   },
+    //   {
+    //     withCredentials: true,
+    //     credentials: 'same-origin',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //   },
+    //   )
+    axios({
+      method: 'post',
+      data: {
         firstName, lastName, username, email, password, password2, companyName, userRole,
-      })
+      },
+      url: '/api/signup',
+      // responseType: 'stream'
+      withCredentials: true,
+      credentials: 'same-origin',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      // .then(function (response) {
+      //   response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+      // })
       .then((response) => {
-        console.log('data back from server received in reg form', response.config.data)
+        console.log('in register is loggedin 1st', this.state.isLoggedIn)
+        console.log('all data back from server in reg form after auth', response.data)
+        console.log('user session back from server received in reg form', response.data.myRegSesh)
         console.log('this is my props from server coming back after data', this.props.history)
-        this.setState({
-          isLoggedIn: true,
-        })
-        history.push('/home')
+        console.log('what is my response status in reg', response.status)
+        if (response.status === 200 && response.data.myRegSesh) {
+          this.setState({
+            isLoggedIn: true,
+            userData: response.data,
+          })
+          console.log('in register is loggedin 2nd after state update', this.state.isLoggedIn)
+          history.push('/home')
+        } else {
+          history.push('/register')
+        }
       })
       .catch((err) => {
         console.log(err)

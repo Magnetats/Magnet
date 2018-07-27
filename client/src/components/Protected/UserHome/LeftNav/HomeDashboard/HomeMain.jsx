@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Segment } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-import { medBlue } from '../../../../styling/theme/variables'
+import { medBlue } from '../../../../../styling/theme/variables'
 import FunnelStageDropDown from './FunnelStages/FunnelStageDropDown'
 
 const MainGrid = styled(Grid)`

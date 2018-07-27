@@ -69,7 +69,7 @@ module.exports = {
 		})
 	],
 	output: {
-		path: path.join(__dirname, "/client/.dist"),
+		path: path.join(__dirname, '/client/.dist'),
 		filename: "server.js"
 	}
 };

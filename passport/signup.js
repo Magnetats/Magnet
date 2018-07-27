@@ -32,6 +32,7 @@ module.exports = (passport) => {
             newUser.lastName = req.param('lastName')
             newUser.companyName = req.param('companyName')
             newUser.userRole = req.param('userRole')
+            // newUser.userCookie= req.param(req.cookies.user_sid)
             // save the user
             newUser.save(function(err) {
               if (err) {
@@ -39,7 +40,8 @@ module.exports = (passport) => {
                 throw err
               }
               console.log('User Registration succesful')
-              console.log('this is my session', req.session)
+              console.log('checking the session info in reg', 'req.sesion.id', req.session.id, 'newUser.id', newUser.id)
+              console.log('New user info in reg serverside', newUser)
               return done(null, newUser)
             })
           }

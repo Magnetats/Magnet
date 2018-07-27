@@ -30,14 +30,13 @@ module.exports = (passport) => {
           }
           // User and password both match, return user from done method
           // which will be treated like success
-          console.log('you are logged in')
+          console.log('you are logged in user info in passport coming back', user)
+          console.log('checking the session info', 'req.sesion.id', req.session.id, 'user.id', user.id)
           return done(null, user)
         },
       )
     },
   ))
 
-  const isValidPassword = function (user, password) {
-    return bCrypt.compareSync(password, user.password)
-  }
+  const isValidPassword = (user, password) => bCrypt.compareSync(password, user.password)
 }
