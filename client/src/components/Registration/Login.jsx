@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+
+import { Redirect } from 'react-router-dom'
+import { Form } from 'semantic-ui-react'
+import Auth from '../Protected/Auth'
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +13,7 @@ class Login extends Component {
       username: '',
       password: '',
       validForm: false,
-      isLoggedIn: false,
+      redirectToReferrer: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,7 +26,7 @@ class Login extends Component {
   }
 
   handleSubmit() {
-    const { username, password, validForm } = this.state
+    const { username, password, validForm, redirectToReferrer } = this.state
     if (this.state.username === '' || this.state.password === '') {
       this.setState({
         validForm: false,
@@ -36,29 +39,61 @@ class Login extends Component {
       history.listen((e) => {
         console.log('listen to your history in login', e.pathname)
       })
-      axios
-        .post('/api/login', {
-          username,
-          password,
-        })
+      // axios
+      //   .post('/api/login', {
+      //     username,
+      //     password,
+      //   })
+      axios({
+        method: 'post',
+        data: {
+          username, password,
+        },
+        url: '/api/login',
+        // responseType: 'stream'
+        withCredentials: true,
+        credentials: 'same-origin',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
         .then((response) => {
-          console.log('data back from server received in login form', response.config.data)
-          console.log('this is my props from server coming back after data', this.props)
-          this.state.isLoggedIn = true
-          console.log('state shows logged in true', this.state.isLoggedIn)
-          // alert(`Welcome, you are logged in.`)
-          history.push('/home')
+          console.log('data back from server received in login form', response)
+          console.log('this is my props from server coming back from login server endpoint', this.props)
+          console.log('login state shows logged in true', this.state.redirectToReferrer)
+          console.log('login true coming back from server not state', response.data.authenticated)
+          console.log('what is my response status in login', response.status)
+          if (response.data.authenticated) {
+            this.setState({
+              redirectToReferrer: true,
+              userData: response.data.user,
+            })
+            Auth.authenticate(response.data.authenticated)
+            console.log('in login is loggedin 2nd after state update', this.state.redirectToReferrer)
+            // history.push('/home')
+          // } else {
+          //   history.push('/login')
+          }
         })
         .catch((err) => {
           console.log(err)
         })
       this.setState({ username: '', password: '' })
     }
-
   }
 
   render() {
-    const { username, password } = this.state
+    const { username, password, redirectToReferrer } = this.state
+    const { from } = this.props.location.state || { from: { pathname: '/home' } }
+
+    if (redirectToReferrer === true) {
+      return <Redirect to={from} />
+    }
+    console.log('rendingin in login form is logged in when going to page?', redirectToReferrer)
+    // if (isLoggedIn) {
+    //   return <Redirect to="/home" />
+    // }
     return (
       <div className="ui text container">
         {/* <Prompt

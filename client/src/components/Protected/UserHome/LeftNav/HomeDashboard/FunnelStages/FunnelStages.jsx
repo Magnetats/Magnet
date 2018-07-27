@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-import { medBlue, lightestBlueBorder, appGrayLightest } from '../../../../../styling/theme/variables'
+import { medBlue, lightestBlueBorder, appGrayLightest } from '../../../../../../styling/theme/variables'
 
 import ResumeReview from './ResumeReview'
 const FunnelDiv = styled.div`

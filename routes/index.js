@@ -9,23 +9,46 @@ const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next()
   // if the user is not authenticated then redirect him to the login page
-  res.redirect('/api/login')
+  res.redirect('/login')
 }
 
 module.exports = (passport) => {
   /* GET login page. */
   router.get('/', (req, res) => {
     // Display the Login page with any flash message, if any
-    res.render('index', {
-      message: req.flash('message'),
-    })
+    console.log('req cookeeee in index.js', req.cookies)
+    console.log('reqsession id in server index', req.sessionID)
+    res.send(req.cookies.user_sid)
   })
   /* Handle Login POST */
-  router.post('/api/login', passport.authenticate('login', {
-    successRedirect: '/api/home',
-    failureRedirect: '/api/login',
-    failureFlash: true,
-  }))
+  // router.post('/api/login', passport.authenticate('login', {
+  //   successRedirect: '/home',
+  //   failureRedirect: '/login',
+  //   failureFlash: true,
+  // }))
+
+  router.post(
+    '/api/login', passport.authenticate('login'),
+    (req, res) => {
+      if (req.user) {
+        return res.status(200).json({
+          authenticated: true,
+        })
+      }
+      return res.status(401).json({
+        error: 'User is not authenticated',
+        authenticated: false,
+      })
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+      // const myLoginSesh = req.cookies
+      // console.log('req login session on my index file', myLoginSesh)
+      // res.json({
+      //   myLoginSesh,
+      // })
+    },
+  )
+
   /* GET Registration Page */
   // router.get('/signup', (req, res) => {
   //   res.render('register', {
@@ -33,28 +56,66 @@ module.exports = (passport) => {
   //   })
   // })
   /* Handle Registration POST */
-  router.post('/api/signup', passport.authenticate('signup', {
-    successRedirect: '/api/home',
-    failureRedirect: '/api/signup',
-    failureFlash: true,
-  }))
+  // router.post('/api/signup', passport.authenticate('signup', {
+  //   successRedirect: '/api/home',
+  //   failureRedirect: '/api/signup',
+  //   failureFlash: true,
+  // }))
+  router.post(
+    '/api/signup', passport.authenticate('signup'),
+    (req, res) => {
+      // If this function gets called, authentication was successful.
+      // `req.user` contains the authenticated user.
+      const myRegSesh = req.cookies
+      console.log('checking the whole request object in indexjs server', req.userRole, req.newUser)
+      console.log('req reg session on my index file', myRegSesh)
+      res.json({
+        myRegSesh,
+      })
+    },
+  )
   // /* GET Home Page */
   // router.get('/home', isAuthenticated, (req, res) => {
   //   res.render('home', {
   //     user: req.user,
   //   })
   // })
-  router.get('/api/home', isAuthenticated, (req, res) => {
-    res.status(200).json({
-      user: req.user,
+  router.get('/api/home', (req, res) => {
+    if (req.user) {
+      return res.status(200).json({
+        user: req.user,
+        authenticated: true,
+      })
+    }
+    return res.status(401).json({
+      error: 'User is not authenticated',
+      authenticated: false,
     })
   })
   /* Handle Logout */
-  router.get('/api/logout', (req, res) => {
-    console.log('logout request data', req)
-    req.logout()
-    // res.redirect('/api/login')
-    res.send('testing if this endpoint is working')
+  // router.get('/api/logout', (req, res) => {
+  //   console.log('logout request data', req)
+  //   res.send(req.cookies)
+  //   req.logout()
+  //   // res.redirect('/api/login')
+
+  // })
+// GET for logout logout
+  router.get('/api/logout', (req, res, next) => {
+    console.log('right before deleting', req.session)
+    if (req.session) {
+    // delete session object
+      req.session.destroy(function(err) {
+        if (err) {
+          return next(err)
+        }
+      })
+      const logOutSesh = req.session
+      console.log('after deleting the logOutSesh', logOutSesh)
+      res.json({
+        logOutSesh,
+      })
+    }
   })
   return router
 }

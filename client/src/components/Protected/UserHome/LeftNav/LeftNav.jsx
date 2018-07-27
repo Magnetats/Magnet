@@ -1,26 +1,67 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
+import axios from 'axios'
 import {
   Menu,
   Image,
   Icon,
 } from 'semantic-ui-react'
 
-import { medBlue, darkerWhite, lightBlue } from '../../../styling/theme/variables'
+import { medBlue, darkerWhite, lightBlue } from '../../../../styling/theme/variables'
 import TopNav from '../TopNav/TopNav'
 import HomeMain from './HomeDashboard/HomeMain'
+import Jobs from './HomeDashboard/Jobs/Jobs'
+
 class LeftNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
       activeItem: 'home',
+      isAuthenticated: false,
+      userData: '',
     }
+    console.log('props at top of home coming from Login', this.props)
     this.handleItemClick = this.handleItemClick.bind(this)
   }
 
   componentDidMount() {
-    console.log('props after home page loads after login', this.props)
+    const { userData, isAuthenticated, activeItem } = this.state
+    const { history } = this.props
+    history.listen((e) => {
+      console.log('listen to your history in home', e.pathname)
+    })
+    console.log('props once homepage is loaded', this.props)
+    axios({
+      method: 'get',
+      url: '/api/home',
+      withCredentials: true,
+      credentials: 'same-origin',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        const seshFromServer = response.data.myHomeSesh
+        console.log('home page looking at all the user response data', response.data)
+        console.log('home page looking at user response data', response.data.user)
+        console.log('home page looking whether logged in from server data', response.data.authenticated)
+        console.log('in homme this state loggedin 1st one?', this.state.isAuthenticated)
+        console.log('data back from server received after home', seshFromServer)
+        console.log('this is my props from server coming back after data in home', this.props)
+        console.log('what is my response status in home', response.status)
+        this.setState({
+          isAuthenticated: response.data.authenticated,
+          userData: response.data.user,
+        })
+        console.log('this state, you r logged in home after load true?', this.state.isAuthenticated)
+        console.log('user data from the apps current state after everything in home', this.state.userData)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    // this.setState({ username: '', password: '' })
   }
 
   handleItemClick(e, { name }) {
@@ -30,8 +71,7 @@ class LeftNav extends Component {
   }
 
   render() {
-    const { visible, activeItem } = this.state
-
+    const { visible, activeItem, isAuthenticated } = this.state
     const LeftNavMenu = styled(Menu)`
       #side-user-pic {
         min-width: 6em;
@@ -137,7 +177,9 @@ class LeftNav extends Component {
           }
         }
       }`
-
+    // if (!isAuthenticated) {
+    //   return <Redirect to="/login" />
+    // }
     return (
       <div id="sidebar-container">
         <TopNav />
@@ -166,18 +208,20 @@ class LeftNav extends Component {
             />
               Home
           </LeftNavMenuItem>
-          <LeftNavMenuItem
-            name="jobs"
-            className="menu-names"
-            active={activeItem === 'jobs'}
-            onClick={this.handleItemClick}
-          >
-            <Icon
-              name="suitcase"
-              className="left-nav-icons"
-            />
+          {/* <NavLink to="/jobs"> */}
+            <LeftNavMenuItem
+              name="jobs"
+              className="menu-names"
+              active={activeItem === 'jobs'}
+              onClick={this.handleItemClick}
+            >
+              <Icon
+                name="suitcase"
+                className="left-nav-icons"
+              />
               My Jobs
-          </LeftNavMenuItem>
+            </LeftNavMenuItem>
+          {/* </NavLink> */}
           <LeftNavMenuItem
             name="candidates"
             className="menu-names"
@@ -203,10 +247,8 @@ class LeftNav extends Component {
               Metrics
           </LeftNavMenuItem>
         </LeftNavMenu>
-        {/* {
-          this.state === 'home' ? <HomeMain />:
-        } */}
-        <HomeMain />
+        {this.state.activeItem === 'home' ? <HomeMain /> : null}
+        {this.state.activeItem === 'jobs' ? <Jobs /> : null}
       </div>
     )
   }
