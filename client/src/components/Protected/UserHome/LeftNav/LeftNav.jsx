@@ -9,6 +9,8 @@ import {
 } from 'semantic-ui-react'
 
 import { medBlue, darkerWhite, lightBlue } from '../../../../styling/theme/variables'
+import AddProfilePhoto from '../../../../styling/images/upload-photo.png'
+import Auth from '../../../Protected/Auth'
 import TopNav from '../TopNav/TopNav'
 import HomeMain from './HomeDashboard/HomeMain'
 import Jobs from './HomeDashboard/Jobs/Jobs'
@@ -18,8 +20,8 @@ class LeftNav extends Component {
     super(props)
     this.state = {
       activeItem: 'home',
-      isAuthenticated: false,
       userData: '',
+      isLoggedIn: false,
     }
     console.log('props at top of home coming from Login', this.props)
     this.handleItemClick = this.handleItemClick.bind(this)
@@ -28,10 +30,11 @@ class LeftNav extends Component {
   componentDidMount() {
     const { userData, isAuthenticated, activeItem } = this.state
     const { history } = this.props
+    console.log('Auth state when home component loads', Auth.isAuthenticated)
+    console.log('this is the props in home after comp did mount', this.props)
     history.listen((e) => {
       console.log('listen to your history in home', e.pathname)
     })
-    console.log('props once homepage is loaded', this.props)
     axios({
       method: 'get',
       url: '/api/home',
@@ -47,21 +50,25 @@ class LeftNav extends Component {
         console.log('home page looking at all the user response data', response.data)
         console.log('home page looking at user response data', response.data.user)
         console.log('home page looking whether logged in from server data', response.data.authenticated)
-        console.log('in homme this state loggedin 1st one?', this.state.isAuthenticated)
-        console.log('data back from server received after home', seshFromServer)
         console.log('this is my props from server coming back after data in home', this.props)
         console.log('what is my response status in home', response.status)
-        this.setState({
-          isAuthenticated: response.data.authenticated,
-          userData: response.data.user,
-        })
-        console.log('this state, you r logged in home after load true?', this.state.isAuthenticated)
+        // this.setState({
+        //   userData: response.data.user,
+        // })
+        if (response.data.authenticated) {
+          Auth.authenticate(() => {
+            this.setState(() => ({
+              isLoggedIn: response.data.authenticated,
+              userData: response.data.user,
+            }))
+          })
+        }
+        console.log('this state, you r logged in home after load true?', Auth.isAuthenticated)
         console.log('user data from the apps current state after everything in home', this.state.userData)
       })
       .catch((err) => {
         console.log(err)
       })
-    // this.setState({ username: '', password: '' })
   }
 
   handleItemClick(e, { name }) {
@@ -89,11 +96,8 @@ class LeftNav extends Component {
         background: 0 0;
         border-top: none;
         border-right: none;
-        border-radius: 5px 5px 0px 0px;
+        border-radius: 0px 0px 0px 0px;
         padding: 16px;
-        &:hover {
-          color: ${medBlue};
-        }
       }
 
       &&&& {
@@ -115,6 +119,7 @@ class LeftNav extends Component {
         color: #F0F0F0;
         background-color: ${medBlue} !important;
         font-weight: 400;
+        top: -8px;
         &:last-child {
           border-radius: 0px 0px 5px 5px;
         }
@@ -194,7 +199,7 @@ class LeftNav extends Component {
             name="user pic"
             id="side-user-pic"
           >
-            <Image src="https://pbs.twimg.com/profile_images/965410440120483840/ydq7NYb4_400x400.jpg" size='medium' circular />
+            <Image src={AddProfilePhoto} size="large" circular />
           </LeftNavMenuItem>
           <LeftNavMenuItem
             name="home"

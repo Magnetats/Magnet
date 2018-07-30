@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Redirect, withRouter } from 'react-router-dom'
 import { Popup, Button, Header, Image, Modal, Checkbox, Form, Message } from 'semantic-ui-react'
 
+import Auth from '../Protected/Auth'
+
 const options = [
   { key: 'r', text: 'Recruiter', value: 'Recruiter' },
   { key: 'hm', text: 'Hiring Manager', value: 'Hiring Manager' },
@@ -22,7 +24,7 @@ class RegisterUser extends Component {
       password2: '',
       companyName: '',
       userRole: '',
-      isLoggedIn: false,
+      redirectToReferrer: false,
       userData: '',
     }
     this.handleChange = this.handleChange.bind(this)
@@ -44,19 +46,7 @@ class RegisterUser extends Component {
     history.listen((e) => {
       console.log('listen to your history in registration', e.pathname)
     })
-    // axios
-    //   .post('/api/signup', {
-    //     firstName, lastName, username, email, password, password2, companyName, userRole,
-    //   },
-    //   {
-    //     withCredentials: true,
-    //     credentials: 'same-origin',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //     },
-    //   },
-    //   )
+
     axios({
       method: 'post',
       data: {
@@ -80,16 +70,33 @@ class RegisterUser extends Component {
         console.log('user session back from server received in reg form', response.data.myRegSesh)
         console.log('this is my props from server coming back after data', this.props.history)
         console.log('what is my response status in reg', response.status)
-        if (response.status === 200 && response.data.myRegSesh) {
-          this.setState({
-            isLoggedIn: true,
-            userData: response.data,
+        if (response.data.authenticated) {
+          Auth.authenticate(() => {
+            this.setState(() => ({
+              redirectToReferrer: true,
+              // userData: response.data.user,
+            }))
           })
-          console.log('in register is loggedin 2nd after state update', this.state.isLoggedIn)
-          history.push('/home')
-        } else {
-          history.push('/register')
-        }
+          // this.setState({
+          //   redirectToReferrer: true,
+          //   userData: response.data.user,
+          // })
+          // Auth.authenticate(response.data.authenticated)
+          console.log('in login is loggedin 2nd after state update', this.state.redirectToReferrer)
+          // history.push('/home')
+          // } else {
+          //   history.push('/login')
+          }
+        // if (response.status === 200 && response.data.myRegSesh) {
+        //   this.setState({
+        //     isLoggedIn: true,
+        //     userData: response.data,
+        //   })
+        //   console.log('in register is loggedin 2nd after state update', this.state.isLoggedIn)
+        //   history.push('/home')
+        // } else {
+        //   history.push('/register')
+        // }
       })
       .catch((err) => {
         console.log(err)
@@ -108,9 +115,22 @@ class RegisterUser extends Component {
 
   render() {
     const {
-      firstName, lastName, username, email, password, password2, companyName, userRole,
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      password2,
+      companyName,
+      userRole,
+      redirectToReferrer,
     } = this.state
+    const { from } = this.props.location.state || { from: { pathname: '/home' } }
 
+    if (redirectToReferrer === true) {
+      return <Redirect to={from} />
+    }
+    console.log('rendingin in login form is logged in when going to page?', redirectToReferrer)
     return (
       <div className="ui text container">
         <Form onSubmit={this.handleSubmit}>
