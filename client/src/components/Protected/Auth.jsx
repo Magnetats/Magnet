@@ -1,16 +1,16 @@
 import React from 'react'
 
-const Auth = () => ({
+const Auth = {
   isAuthenticated: false,
-  authenticate(isAuthed) {
-    this.isAuthenticated = isAuthed //change back to true
-    setTimeout(isAuthed, 100) // fake async
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
   },
-  signout(isAuthed) {
+  signout(cb) {
     this.isAuthenticated = false
-    setTimeout(isAuthed, 100) // fake async
-  },
-})
+    setTimeout(cb, 100)
+  }
+}
 
 export default Auth
 

@@ -10,7 +10,7 @@ import PageNotFound from './src/components/PageNotFound'
 
 const Root = () => (
   <Switch>
-    <Route path="/" component={HomePage} exact />
+    <Route path="/" component={HomePage} exact={true} />
     <Route path="/register" component={RegisterUser} />
     <Route path="/login" component={Login} />
     {/* <Route path="/home" component={UserHome} /> */}

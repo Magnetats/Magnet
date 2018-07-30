@@ -26,7 +26,9 @@ class Login extends Component {
   }
 
   handleSubmit() {
-    const { username, password, validForm, redirectToReferrer } = this.state
+    const {
+      username, password, validForm, redirectToReferrer,
+    } = this.state
     if (this.state.username === '' || this.state.password === '') {
       this.setState({
         validForm: false,
@@ -39,11 +41,6 @@ class Login extends Component {
       history.listen((e) => {
         console.log('listen to your history in login', e.pathname)
       })
-      // axios
-      //   .post('/api/login', {
-      //     username,
-      //     password,
-      //   })
       axios({
         method: 'post',
         data: {
@@ -65,15 +62,11 @@ class Login extends Component {
           console.log('login true coming back from server not state', response.data.authenticated)
           console.log('what is my response status in login', response.status)
           if (response.data.authenticated) {
-            this.setState({
-              redirectToReferrer: true,
-              userData: response.data.user,
+            Auth.authenticate(() => {
+              this.setState(() => ({
+                redirectToReferrer: true,
+              }))
             })
-            Auth.authenticate(response.data.authenticated)
-            console.log('in login is loggedin 2nd after state update', this.state.redirectToReferrer)
-            // history.push('/home')
-          // } else {
-          //   history.push('/login')
           }
         })
         .catch((err) => {
@@ -86,11 +79,16 @@ class Login extends Component {
   render() {
     const { username, password, redirectToReferrer } = this.state
     const { from } = this.props.location.state || { from: { pathname: '/home' } }
-
+    console.log('props at top of home coming from Login', this.props)
+    console.log('login state redirect shows what?', this.state.redirectToReferrer)
+    console.log('login page auth state logged in?', Auth.isAuthenticated)
+    // if (Auth.isAuthenticated === true) {
+    //   return <Redirect to="/home" />
+    // }
     if (redirectToReferrer === true) {
       return <Redirect to={from} />
     }
-    console.log('rendingin in login form is logged in when going to page?', redirectToReferrer)
+    console.log('login location state then from pathname', from)
     // if (isLoggedIn) {
     //   return <Redirect to="/home" />
     // }
