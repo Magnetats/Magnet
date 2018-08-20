@@ -7,13 +7,14 @@ import FunnelStageDropDown from './FunnelStages/FunnelStageDropDown'
 
 const MainGrid = styled(Grid)`
   && {
-    margin-left: 185px;
-    margin-top: -431px;
+    margin-left: 160px;
+    margin-top: -425px;
     width: 84%;
   }
   .ui.segment {
     position: relative;
     top: 18px;
+    height: 215px;
   }
 `
 const HomeMain = () => (
@@ -43,31 +44,6 @@ const HomeMain = () => (
       </Grid.Column>
       <Grid.Column>
         <Segment>All Sizes</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={4} only="computer">
-      <Grid.Column>
-        <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment>Computer</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={3} only="tablet">
-      <Grid.Column>
-        <Segment>Tablet</Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment>Tablet</Segment>
-      </Grid.Column>
-      <Grid.Column>
-        <Segment>Tablet</Segment>
       </Grid.Column>
     </Grid.Row>
   </MainGrid>
