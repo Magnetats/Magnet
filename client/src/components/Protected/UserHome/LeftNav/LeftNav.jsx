@@ -79,9 +79,13 @@ class LeftNav extends Component {
 
   render() {
     const { visible, activeItem, isAuthenticated } = this.state
+    const StyledWrapper = styled.div`
+      margin-top: 415px;
+    `
     const LeftNavMenu = styled(Menu)`
       #side-user-pic {
-        min-width: 6em;
+        pointer-events: none;
+        min-width: 7em;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -99,37 +103,44 @@ class LeftNav extends Component {
         border-radius: 0px 0px 0px 0px;
         padding: 16px;
       }
-
+      &#leftNav {
+        position: fixed;
+      }
       &&&& {
         width: 0%;
-        min-width: 100px;
-        /* margin-left: 2.4%; */
-        /* top: 59px; */
-        background-color: #fff;
+        min-width: 7em;
+        background-color: ${medBlue};
         position: relative;
-        margin-top: 50px;
         border-radius: 5px 5px 5px 5px;
         -webkit-box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
         -moz-box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
-        box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
-      }`;
+
+      }`
 
     const LeftNavMenuItem = styled(Menu.Item)`
       &&&&&& {
         color: #F0F0F0;
+        min-width: 6em;
         background-color: ${medBlue} !important;
         font-weight: 400;
-        top: -8px;
         &:last-child {
-          border-radius: 0px 0px 5px 5px;
+          -webkit-box-shadow: rgba(223, 242, 250, 0.59);
+          -moz-box-shadow: rgba(223, 242, 250, 0.59);
+          box-shadow: rgba(223, 242, 250, 0.59);
         }
         &:before {
-          -webkit-box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
-          -moz-box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
-          box-shadow: inset -1px 19px 21px -24px rgba(223,242,250,0.59);
+          -webkit-box-shadow: inset -1px 19px 21px -24px rgba(223, 242, 250, 0.59);
+          -moz-box-shadow: inset -1px 19px 21px -24px rgba(223, 242, 250, 0.59);
+          box-shadow: inset -1px 19px 21px -24px rgba(223, 242, 250, 0.59);
           padding-bottom: 70px;
+          background: rgba(34,36,38,.0);
+          &:hover {
+            background-color: #FFFFFF !important;
+            z-index: 555;
+          }
         }
         &.active {
+          height: 70px;
           font-size: 104%;
           font-weight: 900;
           background-color: #565656 !important;
@@ -149,11 +160,20 @@ class LeftNav extends Component {
           &:after {
             height: 18px;
             width: 18px;
-            background-color: white !important;
+            background-color: #FFFFFF !important;
+            left: 79px;
             &:hover {
               height: 18px;
               width: 18px;
-              background-color: white !important;
+              background-color: #FFFFFF !important;
+            }
+          }
+          &:before {
+            height: 70px;
+            background-color: #FFFFFF !important;
+            z-index: -1;
+            &:hover {
+              background-color: #FFFFFF !important;
             }
           }
         }
@@ -161,7 +181,7 @@ class LeftNav extends Component {
           &:after {
             height: 18px;
             width: 18px;
-            background-color: white !important;
+            background-color: #FFFFFF !important;
           }
           background-color: #FFFFFF !important;
           font-size: 104%;
@@ -181,19 +201,17 @@ class LeftNav extends Component {
             background-clip: text;
           }
         }
-      }`
-    // if (!isAuthenticated) {
-    //   return <Redirect to="/login" />
-    // }
+      }`;
     return (
-      <div id="sidebar-container">
+      <StyledWrapper>
         <TopNav />
         <LeftNavMenu
+          id="leftNav"
           pointing
           vertical
           icon="labeled"
           inverted
-          className="side-nav-background"
+          fixed="left"
         >
           <LeftNavMenuItem
             name="user pic"
@@ -251,10 +269,13 @@ class LeftNav extends Component {
             />
               Metrics
           </LeftNavMenuItem>
+          {/* <LeftNavMenuItem
+            className="menu-names"
+          /> */}
         </LeftNavMenu>
         {this.state.activeItem === 'home' ? <HomeMain /> : null}
         {this.state.activeItem === 'jobs' ? <Jobs /> : null}
-      </div>
+      </StyledWrapper>
     )
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Icon } from 'semantic-ui-react'
 
 import { appGrayLight } from '../../../../styling/theme/variables'
 import Logo from '../../../Logo'
@@ -10,12 +11,23 @@ const TopNavDiv = styled.div`
     color: ${appGrayLight}
   }
   .ui.top.fixed.menu {
+    margin-top: 5px;
     height: 55px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .ui.bottom.fixed.menu {
+    z-index: 102;
   }
   #logo-box {
     width: 15%;
     min-width: 213px;
-    padding-left: 2%;
+    margin-left: 157px;
+    margin-right: 58%;
+  }
+  i.setting.large.icon {
+        margin: 18px;
   }
 `
 
@@ -26,13 +38,16 @@ const TopNav = () => {
         <div className="item" id="logo-box">
           <Logo />
         </div>
+        <Icon
+          name="setting"
+          size="large"
+        />
         <Logout />
         {/* <a className="item">Testimonials</a>
         <a className="item" position="right">Sign-in</a> */}
       </div>
       <div className="ui bottom fixed menu">
         <div className="item">
-          <img src="/images/logo.png" />
         </div>
         <a className="item">Hey Girl Hey</a>
         <a className="item">Testimonials</a>

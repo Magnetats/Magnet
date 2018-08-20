@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 import Auth from '../../../Protected/Auth'
 
 class Logout extends Component {
@@ -43,12 +44,22 @@ class Logout extends Component {
   }
 
   render() {
+    const StyledLogout = styled.a`
+    &&&&& {
+        position: unset;
+      }
+      &&&&:before {
+        width: 0px !important;
+        background: none !important;
+      }
+    `
     return (
-      <a
-        className="item app-top-menu-text"
+      <StyledLogout
+        position="right"
+        className="ui item"
         onClick={this.handleClick}
       >Log out
-      </a>
+      </StyledLogout>
     )
   }
 }
