@@ -9,6 +9,10 @@ module.exports = mongoose.model('User', {
   password2: String,
   companyName: String,
   userRole: String,
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
   created: {
     type: Date, default: Date.now
   },
