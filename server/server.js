@@ -1,5 +1,7 @@
 import { StaticRouter } from 'react-router'
 import express from 'express'
+import multer from 'multer'
+import fs from 'fs'
 import uuid from 'uuid/v4'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -8,6 +10,7 @@ import expressLogging from 'express-logging'
 import logger from 'logops'
 import path from 'path'
 import cookieParser from 'cookie-parser'
+
 import Root from '../client/root'
 import dbConfig from '../database/db'
 
@@ -77,9 +80,15 @@ const routes = require('../routes/index')(passport)
 // app.use((req, res, next) => { res.header('Access-Control-Allow-Origin', '*'); next() })
 app.use('/', routes)
 app.use(function printSession(req, res, next) {
-  console.log('req.session', req.session);
-  return next();
+  console.log('req.session from the server', req.session)
+  return next()
 })
+
+// app.use(multer({ dest: './uploads/',
+//  rename: function (fieldname, filename) {
+//    return filename;
+//  },
+// }))
 
 app.post('/testendpoint', (req, res) => {
   console.log('whats in server under testendpoint', req.body)
