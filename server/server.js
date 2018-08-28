@@ -1,7 +1,7 @@
 import { StaticRouter } from 'react-router'
 import express from 'express'
-import multer from 'multer'
-import fs from 'fs'
+// import multer from 'multer'
+// import fs from 'fs'
 import uuid from 'uuid/v4'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -11,8 +11,10 @@ import logger from 'logops'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 
+// import User from '../database/models/user'
 import Root from '../client/root'
 import dbConfig from '../database/db'
+import fileUpload from '../routes/fileUpload'
 
 const passport = require('passport')
 const session= require('express-session')
@@ -61,9 +63,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true)
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept')
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept')
   next()
 })
 
@@ -79,16 +81,64 @@ const routes = require('../routes/index')(passport)
 
 // app.use((req, res, next) => { res.header('Access-Control-Allow-Origin', '*'); next() })
 app.use('/', routes)
+app.use('/', fileUpload)
 app.use(function printSession(req, res, next) {
   console.log('req.session from the server', req.session)
   return next()
 })
 
-// app.use(multer({ dest: './uploads/',
-//  rename: function (fieldname, filename) {
-//    return filename;
-//  },
-// }))
+// const insertDocuments = (db, filePath, callback) => {
+//   const collection = db.collection('users')
+//   collection.insertOne({
+//     'imagePath': filePath,
+//   }, (err, result) => {
+//     assert.equal(err, null)
+//     callback(result)
+//   })
+// }
+
+// app.post('/api/profile/photo', upload.single('selectedFile'), (req, res) => {
+//   const userName = 'crizzcoxx'
+
+//   /*
+//     We now have a new req.file object here. At this point the file has been saved
+//     and the req.file.filename value will be the name returned by the
+//     filename() function defined in the diskStorage configuration. Other form fields
+//     are available here in req.body.
+//   */
+//   // User.save((err, db) => {
+//   //   assert.equal(null, err)
+//   //   insertDocuments(db, './uploads/' + req.file.filename, () => {
+//   //     res.json({'message': 'File uploaded successfully'})
+//   //   })
+//   // })
+//   // res.send()
+// })
+
+// app.post('/search', function(req, res, next) {
+//   var meetupReqData = req.body;
+//   console.log('this is my body', meetupReqData.currSearchTerm);
+//   MeetupHelper.searchMeetUp(meetupReqData.currSearchTerm, function(groupInfo) {
+//     console.log(groupInfo[1].name, null, 2);
+//     db.save(groupInfo, function() {
+//       res.status(201).send('response successful');
+//     });
+//   });
+
+// });
+
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, '.dist/images/uploads')
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   },
+// })
+// let upload = multer({ storage: storage })
+
+// User.
 
 app.post('/testendpoint', (req, res) => {
   console.log('whats in server under testendpoint', req.body)
@@ -96,7 +146,6 @@ app.post('/testendpoint', (req, res) => {
   const uniqueId = uuid()
   res.send(`test page. Received the unique id: ${uniqueId}\n`)
   res.send('hello sailor')
-  // res.send('data coming back from server', data)
 })
 // app.use('/api/book', book)
 // app.use('/api/auth', auth)

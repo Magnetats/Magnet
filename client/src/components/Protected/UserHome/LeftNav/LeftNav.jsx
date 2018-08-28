@@ -6,10 +6,13 @@ import {
   Menu,
   Image,
   Icon,
+  Button,
 } from 'semantic-ui-react'
 
-import { medBlue, darkerWhite, lightBlue } from '../../../../styling/theme/variables'
-import AddProfilePhoto from '../../../../styling/images/upload-photo.png'
+import { medBlue, darkerWhite, lightBlue, hangryGrayBtn } from '../../../../styling/theme/variables'
+import AddProfilePhoto from '../../../../styling/images/Upload-Photo-Only.jpg'
+import EditProfilePhoto from '../../../../styling/images/Upload-Photo-Hover-Dark.jpg'
+// import ProfilePicHover from './ProfilePicHover'
 import Auth from '../../../Protected/Auth'
 import TopNav from '../TopNav/TopNav'
 import HomeMain from './HomeDashboard/HomeMain'
@@ -22,9 +25,12 @@ class LeftNav extends Component {
       activeItem: 'home',
       userData: '',
       isLoggedIn: false,
+      isHovering: false,
     }
     console.log('props at top of home coming from Login', this.props)
     this.handleItemClick = this.handleItemClick.bind(this)
+    this.handleMouseHover = this.handleMouseHover.bind(this)
+    this.handleProfilePicChange = this.handleProfilePicChange.bind(this)
   }
 
   componentDidMount() {
@@ -70,11 +76,21 @@ class LeftNav extends Component {
         console.log(err)
       })
   }
-
   handleItemClick(e, { name }) {
     this.setState({
       activeItem: name,
     })
+  }
+  handleProfilePicChange(e, {name}) {
+    console.log('you are friggen awesome')
+  }
+  handleMouseHover() {
+    this.setState(this.toggleHoverState);
+  }
+  toggleHoverState(state) {
+    return {
+      isHovering: !state.isHovering,
+    }
   }
 
   render() {
@@ -83,8 +99,12 @@ class LeftNav extends Component {
       margin-top: 415px;
     `
     const LeftNavMenu = styled(Menu)`
+      #profile-pic-hover {
+        color: #FFFFFF;
+        bottom: 66px; /* For IE8 and earlier */
+        opacity: 0.6;
+      }
       #side-user-pic {
-        pointer-events: none;
         min-width: 7em;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -95,13 +115,18 @@ class LeftNav extends Component {
         color: rgba(255, 255, 255, 0.9);
         height: auto;
         text-align: center;
-        color: #1b1c1d;
+        /* color: #1b1c1d; */
         display: block;
         background: 0 0;
-        border-top: none;
-        border-right: none;
-        border-radius: 0px 0px 0px 0px;
+        border: none;
         padding: 16px;
+        :hover {
+          background-color: transparent !important;
+          color: white;
+          min-width: 6.7em;
+          height: 99px;
+          cursor: pointer;
+        }
       }
       &#leftNav {
         position: fixed;
@@ -115,7 +140,7 @@ class LeftNav extends Component {
         -webkit-box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
         -moz-box-shadow: 17px 25px 94px -10px rgba(48, 72, 97, 1);
 
-      }`
+      }`;
 
     const LeftNavMenuItem = styled(Menu.Item)`
       &&&&&& {
@@ -216,8 +241,15 @@ class LeftNav extends Component {
           <LeftNavMenuItem
             name="user pic"
             id="side-user-pic"
+            onMouseEnter={this.handleMouseHover}
+            onMouseLeave={this.handleMouseHover}
+            onClick={this.handleProfilePicChange}
           >
             <Image src={AddProfilePhoto} size="large" circular />
+            {
+              this.state.isHovering &&
+              <Image src={EditProfilePhoto} size="large" id="profile-pic-hover" circular />
+            }
           </LeftNavMenuItem>
           <LeftNavMenuItem
             name="home"

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/crizzcoxx/magnet#readme",
   "dependencies": {
+    "assert": "^1.4.1",
     "axios": "^0.18.0",
     "babel-plugin-lodash": "^3.3.2",
     "bcrypt": "^2.0.1",
