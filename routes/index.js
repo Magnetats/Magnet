@@ -95,19 +95,6 @@ module.exports = (passport) => {
       authenticated: false,
     })
   })
-  router.get('/api/home', (req, res) => {
-    if (req.user) {
-      return res.status(200).json({
-        user: req.user,
-        authenticated: true,
-      })
-    }
-    return res.status(401).json({
-      error: 'User is not authenticated',
-      authenticated: false,
-    })
-  })
-
 // GET for logout logout
   router.get('/api/logout', (req, res, next) => {
     console.log('right before deleting', req.session)

@@ -9,14 +9,16 @@ module.exports = mongoose.model('User', {
   password2: String,
   companyName: String,
   userRole: String,
-  img: {
+  userPic: {
     data: Buffer,
     contentType: String,
   },
   created: {
-    type: Date, default: Date.now
+    type: Date, default: Date.now,
   },
-  updated: Date,
+  updated: {
+    type: Date,
+  },
   isAdmin: { type: Boolean, default: false },
 })
 
